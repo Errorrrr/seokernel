@@ -5329,7 +5329,8 @@ __webpack_require__.r(__webpack_exports__);
       stage: 1,
       errorString: '',
       userQueries: '',
-      loading: ''
+      loading: '',
+      errorBalance: ''
     };
   },
   mounted: function mounted() {},
@@ -5369,6 +5370,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     addTask: function addTask() {
+      var _this2 = this;
+
       var siteList = [];
       this.queries.map(function (value, key) {
         if (value.hide == 0) {
@@ -5381,8 +5384,11 @@ __webpack_require__.r(__webpack_exports__);
         region: this.region,
         userQueries: this.userQueries
       }).then(function (response) {
-        console.log('GOOD');
-        window.location.replace("/clusters");
+        if (response.data == 'ok') {
+          window.location.replace("/clusters");
+        } else {
+          _this2.errorBalance = "Недостаточно средств.";
+        }
       });
     },
     hideRow: function hideRow(index) {
@@ -5417,7 +5423,8 @@ __webpack_require__.r(__webpack_exports__);
       queries: [],
       limit: 'ТОП-10',
       errorString: '',
-      loading: ''
+      loading: '',
+      errorBalance: ''
     };
   },
   mounted: function mounted() {},
@@ -5452,6 +5459,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     addTask: function addTask() {
+      var _this2 = this;
+
       var siteList = [];
       this.queries.map(function (value, key) {
         if (value.hide == 0) {
@@ -5462,8 +5471,11 @@ __webpack_require__.r(__webpack_exports__);
         list: siteList,
         query: this.queryString
       }).then(function (response) {
-        console.log('GOOD');
-        window.location.replace("/queries");
+        if (response.data == 'ok') {
+          window.location.replace("/queries");
+        } else {
+          _this2.errorBalance = "Недостаточно средств.";
+        }
       });
     },
     hideRow: function hideRow(index) {
@@ -5746,7 +5758,7 @@ var render = function render() {
     on: {
       click: _vm.addTask
     }
-  }, [_vm._v("Запустить")]) : _vm._e()])])])])])])]);
+  }, [_vm._v("Запустить")]) : _vm._e(), _vm._v(" "), _c("span", [_vm._v(_vm._s(_vm.errorBalance))])])])])])])])]);
 };
 
 var staticRenderFns = [function () {
@@ -5895,7 +5907,7 @@ var render = function render() {
     on: {
       click: _vm.addTask
     }
-  }, [_vm._v("Запустить")])])])])])])])]);
+  }, [_vm._v("Запустить")]), _vm._v(" "), _c("span", [_vm._v(_vm._s(_vm.errorBalance))])])])])])])])]);
 };
 
 var staticRenderFns = [function () {

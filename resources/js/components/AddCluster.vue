@@ -68,6 +68,8 @@
                                 <button v-if="stage==2" type="submit" class="btn btn-secondary mr-2" v-on:click="changeStage(1)">Назад</button>
                                 <button v-if="stage==1 && queries.length > 0" type="submit" class="btn btn-primary mr-2" v-on:click="changeStage(2)">Дальше</button>
                                 <button v-if="stage==2" type="submit" class="btn btn-primary mr-2" v-on:click="addTask">Запустить</button>
+                                <span>{{errorBalance}}</span>
+
                             </div>
                         </div>
                     </div>
@@ -95,6 +97,7 @@
                 errorString: '',
                 userQueries: '',
                 loading: '',
+                errorBalance: '',
             }
         },
         mounted() {
@@ -134,8 +137,12 @@
                 axios
                     .post('/api/cluster_add_task', {list: siteList, query: this.queryString, region: this.region, userQueries: this.userQueries})
                     .then((response) => {
-                        console.log('GOOD');
-                        window.location.replace("/clusters");
+
+                        if(response.data == 'ok'){
+                            window.location.replace("/clusters");
+                        }else{
+                            this.errorBalance = "Недостаточно средств.";
+                        }
                     });
             },
             hideRow: function(index){

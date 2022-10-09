@@ -45,6 +45,13 @@ class QueryClusterController extends Controller
 
     public function addTask(Request $request){
         $user = Auth::user();
+
+        if($user->balance - count(explode(PHP_EOL,$request->get('userQueries')))*env('PRICE_CLUSTER') >= 0){
+            $user->balance = $user->balance - count(explode(PHP_EOL,$request->get('userQueries')))*env('PRICE_CLUSTER');
+            $user->save();
+        }else{
+            return 'err';
+        }
         $clusterQuery = ClusterQuery::firstOrCreate(['query'=>$request->get('query')],[
             'status'=>0,
             'queryList'=>json_encode($request->get('userQueries'), JSON_UNESCAPED_UNICODE),
@@ -54,8 +61,7 @@ class QueryClusterController extends Controller
             'user_id'=>$user->id,
             'nameExcelFile'=>'none',
         ]);
-        $user->balance = $user->balance - count(explode(PHP_EOL,$request->get('userQueries')))*env('PRICE_CLUSTER');
-        $user->save();
+
         ClusterJob::dispatch($clusterQuery->id);
         return 'ok';
     }

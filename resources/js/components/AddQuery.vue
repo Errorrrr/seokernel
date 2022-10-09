@@ -57,6 +57,7 @@
                             <div class="col-12 col-sm-auto">
                                 <a href="/queries"><button type="submit" class="btn btn-secondary mr-2" >Отменить</button></a>
                                 <button type="submit" class="btn btn-primary mr-2" v-on:click="addTask">Запустить</button>
+                                <span>{{errorBalance}}</span>
                             </div>
                         </div>
                     </div>
@@ -76,6 +77,7 @@
                 limit: 'ТОП-10',
                 errorString: '',
                 loading: '',
+                errorBalance: '',
             }
         },
         mounted() {
@@ -112,8 +114,11 @@
                 axios
                     .post('/api/add_task', {list:siteList, query: this.queryString})
                     .then((response) => {
-                        console.log('GOOD');
-                        window.location.replace("/queries");
+                        if(response.data == 'ok'){
+                            window.location.replace("/queries");
+                        }else{
+                            this.errorBalance = "Недостаточно средств.";
+                        }
                     });
             },
             hideRow: function(index){

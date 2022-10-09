@@ -17,6 +17,7 @@ class ClusterJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public $timeout = 90000;
 
     private $clusterTaskId;
     /**

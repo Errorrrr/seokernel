@@ -34,6 +34,14 @@ class QueryAddController extends Controller
     public function addTask(Request $request){
        // Excel::download(new UsersExport, 'users.xlsx');
         $user = Auth::user();
+        if($user->balance - env('PRICE_ZAPROSI') >= 0){
+            $user->balance = $user->balance - env('PRICE_ZAPROSI');
+            $user->save();
+        }else{
+            return 'err';
+        }
+
+
         $rid = $this->getKeysoGroup($request->get('list'),'msk');
         $keywords = json_decode($this->getKeysoKeywordsByRid($rid, ['base'=>'msk']), true);
 
@@ -75,8 +83,7 @@ class QueryAddController extends Controller
             ]);
         }
 
-        $user->balance = $user->balance - env('PRICE_ZAPROSI');
-        $user->save();
+
         return 'ok';
     }
 
