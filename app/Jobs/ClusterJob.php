@@ -49,7 +49,7 @@ class ClusterJob implements ShouldQueue
 
         foreach ($userQueries as $one){
             $res = $this->xmlStackQuery($one, $region, 10);
-            usleep(70000);
+            usleep(7000);
             $allSitesFromUserQueries = array_merge($allSitesFromUserQueries, $res);
             $queriesByUserQueries[$one] = $res;
         }
