@@ -36,6 +36,7 @@ class ClusterJob implements ShouldQueue
      */
     public function handle()
     {
+        ini_set('max_execution_time', 172800);
         $clusterQuery = ClusterQuery::find($this->clusterTaskId);
 
         $region = $clusterQuery->region_code;
