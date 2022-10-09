@@ -165,7 +165,13 @@ class ClusterJob implements ShouldQueue
     public function xmlStackQuery($query, $region, $count){
         $xs_key = 'https://xmlstock.com/yandex/xml/?user=9455&key='.env('XMLSTACK_API_KEY');
         $query = ( '&query='.urlencode($query) ) . ( $region ? '&lr=' . urlencode($region) : '' );
-        $xml = file_get_contents($xs_key . $query);
+        try {
+            $xml = file_get_contents($xs_key . $query);
+        } catch (Exception $e) {
+            sleep(1);
+            $xml = file_get_contents($xs_key . $query);
+        }
+
         $res = $this->processXml($xml);
 
         if($count == 20){ // Если юзер выбрал ТОП20, то смотрим ещё вторую страницу
