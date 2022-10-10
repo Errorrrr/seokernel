@@ -97,7 +97,7 @@
                 <li class="nav-item @if(Request::is('/')) active @endif" style="align-self: center;">
                     <a class="nav-link" href="https://t.me/turbo_yadro_live">
                         <i class="mdi mdi-telegram"></i>
-                        <span class="menu-title" style="padding:10px;">Телеграм &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span class="menu-title" style="padding:10px;">Задать вопрос &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     </a>
                 </li>
                 <li class="nav-item" style="align-self: center;">
