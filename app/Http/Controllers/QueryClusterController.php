@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Jobs\ClusterJob;
 use App\Models\ClusterQuery;
 use App\Models\MainQuery;
+use App\Models\Price;
 use App\Models\SearchRegion;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -45,9 +46,10 @@ class QueryClusterController extends Controller
 
     public function addTask(Request $request){
         $user = Auth::user();
+        $price = Price::find(1);
 
-        if($user->balance - count(explode(PHP_EOL,$request->get('userQueries')))*env('PRICE_CLUSTER') >= 0){
-            $user->balance = $user->balance - count(explode(PHP_EOL,$request->get('userQueries')))*env('PRICE_CLUSTER');
+        if($user->balance - count(explode(PHP_EOL,$request->get('userQueries')))*$price->cluster_price >= 0){
+            $user->balance = $user->balance - count(explode(PHP_EOL,$request->get('userQueries')))*$price->cluster_price;
             $user->save();
         }else{
             return 'err';

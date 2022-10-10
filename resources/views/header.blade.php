@@ -82,28 +82,28 @@
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
-                <li class="nav-item @if(Request::is('/queries')) active @endif">
+                <li class="nav-item @if(Request::is('/queries')) active @endif" style="align-self: center;">
                     <a class="nav-link" href="/queries">
                         <i class="mdi mdi-diamond"></i>
                         <span class="menu-title" style="padding:10px;">Запросы конкурентов</span>
                     </a>
                 </li>
-                <li class="nav-item @if(Request::is('/clusters')) active @endif">
+                <li class="nav-item @if(Request::is('/clusters')) active @endif" style="align-self: center;">
                     <a class="nav-link" href="/clusters">
                         <i class="mdi mdi-animation"></i>
-                        <span class="menu-title" style="padding:10px;">Кластеризатор</span>
+                        <span class="menu-title" style="padding:10px;">Кластеризатор    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     </a>
                 </li>
-                <li class="nav-item @if(Request::is('/')) active @endif">
-                    <a class="nav-link" href="#">
+                <li class="nav-item @if(Request::is('/')) active @endif" style="align-self: center;">
+                    <a class="nav-link" href="https://t.me/turbo_yadro_live">
                         <i class="mdi mdi-telegram"></i>
-                        <span class="menu-title" style="padding:10px;">Телеграм</span>
+                        <span class="menu-title" style="padding:10px;">Телеграм &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     </a>
                 </li>
                 <li class="nav-item" style="align-self: center;">
-                    <button class="nav-link navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <button class="nav-link navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize" >
                         <i class="mdi mdi-arrow-expand"></i>
-                        <span class="menu-title" style="padding:10px;">Свернуть меню</span>
+                        <span class="menu-title" style="padding:10px;">Свернуть меню &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     </button>
                 </li>
 

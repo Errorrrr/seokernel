@@ -152,6 +152,7 @@ class ComposerStaticInit235530f3581d78e5a7df6eeb57326cf4
         'F' => 
         array (
             'Fruitcake\\Cors\\' => 15,
+            'Fomvasss\\Punycode\\' => 18,
             'Faker\\' => 6,
             'Facade\\Ignition\\' => 16,
             'Facade\\IgnitionContracts\\' => 25,
@@ -480,6 +481,10 @@ class ComposerStaticInit235530f3581d78e5a7df6eeb57326cf4
         array (
             0 => __DIR__ . '/..' . '/fruitcake/laravel-cors/src',
         ),
+        'Fomvasss\\Punycode\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/fomvasss/laravel-punycode/src',
+        ),
         'Faker\\' => 
         array (
             0 => __DIR__ . '/..' . '/fakerphp/faker/src/Faker',
@@ -622,9 +627,11 @@ class ComposerStaticInit235530f3581d78e5a7df6eeb57326cf4
         'App\\Jobs\\ClusterJob' => __DIR__ . '/../..' . '/app/Jobs/ClusterJob.php',
         'App\\Models\\ClusterQuery' => __DIR__ . '/../..' . '/app/Models/ClusterQuery.php',
         'App\\Models\\FailedJob' => __DIR__ . '/../..' . '/app/Models/FailedJob.php',
+        'App\\Models\\Job' => __DIR__ . '/../..' . '/app/Models/Job.php',
         'App\\Models\\MainQuery' => __DIR__ . '/../..' . '/app/Models/MainQuery.php',
         'App\\Models\\PasswordReset' => __DIR__ . '/../..' . '/app/Models/PasswordReset.php',
         'App\\Models\\PersonalAccessToken' => __DIR__ . '/../..' . '/app/Models/PersonalAccessToken.php',
+        'App\\Models\\Price' => __DIR__ . '/../..' . '/app/Models/Price.php',
         'App\\Models\\Query' => __DIR__ . '/../..' . '/app/Models/Query.php',
         'App\\Models\\SearchRegion' => __DIR__ . '/../..' . '/app/Models/SearchRegion.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
@@ -1872,6 +1879,12 @@ class ComposerStaticInit235530f3581d78e5a7df6eeb57326cf4
         'Faker\\Provider\\zh_TW\\Text' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/zh_TW/Text.php',
         'Faker\\UniqueGenerator' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/UniqueGenerator.php',
         'Faker\\ValidGenerator' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/ValidGenerator.php',
+        'Fomvasss\\Punycode\\Exception\\DomainOutOfBoundsException' => __DIR__ . '/..' . '/fomvasss/laravel-punycode/src/Exception/DomainOutOfBoundsException.php',
+        'Fomvasss\\Punycode\\Exception\\LabelOutOfBoundsException' => __DIR__ . '/..' . '/fomvasss/laravel-punycode/src/Exception/LabelOutOfBoundsException.php',
+        'Fomvasss\\Punycode\\Exception\\OutOfBoundsException' => __DIR__ . '/..' . '/fomvasss/laravel-punycode/src/Exception/OutOfBoundsException.php',
+        'Fomvasss\\Punycode\\Facades\\Punycode' => __DIR__ . '/..' . '/fomvasss/laravel-punycode/src/Facades/Punycode.php',
+        'Fomvasss\\Punycode\\Punycode' => __DIR__ . '/..' . '/fomvasss/laravel-punycode/src/Punycode.php',
+        'Fomvasss\\Punycode\\PunycodeServiceProvider' => __DIR__ . '/..' . '/fomvasss/laravel-punycode/src/PunycodeServiceProvider.php',
         'Fruitcake\\Cors\\CorsServiceProvider' => __DIR__ . '/..' . '/fruitcake/laravel-cors/src/CorsServiceProvider.php',
         'Fruitcake\\Cors\\HandleCors' => __DIR__ . '/..' . '/fruitcake/laravel-cors/src/HandleCors.php',
         'GrahamCampbell\\ResultType\\Error' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Error.php',

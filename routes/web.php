@@ -43,6 +43,9 @@ Route::get('api/download_excel/{query}', 'QueryConsController@downloadExcel')->m
 Route::get('api/download_excel_cluster/{query}', 'QueryClusterController@downloadExcel')->middleware(['auth']);
 Route::post('api/delete_query', 'QueryConsController@deleteQuery')->middleware(['auth']);
 Route::post('api/delete_query_cluster', 'QueryClusterController@deleteQuery')->middleware(['auth']);
+Route::get('api/get_price', 'SettingsController@getPrices')->middleware(['auth']);
+Route::post('api/change_price', 'SettingsController@changePrice')->middleware(['auth']);
+Route::post('api/change_password', 'SettingsController@changePass')->middleware(['auth']);
 
 
 Route::get('/settings', 'SettingsController@index')->middleware(['auth']);

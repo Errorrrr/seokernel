@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Exports\QueriesExport;
+use App\Models\Price;
 use App\Models\Query;
 use Carbon\Carbon;
+use Fomvasss\Punycode\Facades\Punycode;
 use Illuminate\Http\Request;
 use App\Models\MainQuery;
 use Illuminate\Support\Facades\Auth;
@@ -34,8 +36,10 @@ class QueryAddController extends Controller
     public function addTask(Request $request){
        // Excel::download(new UsersExport, 'users.xlsx');
         $user = Auth::user();
-        if($user->balance - env('PRICE_ZAPROSI') >= 0){
-            $user->balance = $user->balance - env('PRICE_ZAPROSI');
+        $price = Price::find(1);
+
+        if($user->balance - $price->conc_price >= 0){
+            $user->balance = $user->balance - $price->conc_price;
             $user->save();
         }else{
             return 'err';
@@ -96,7 +100,14 @@ class QueryAddController extends Controller
         $t =  $t['response']['results']['grouping']['group'];
 
         $res=[];
-        foreach ($t as $v) { $res[] = urldecode($v['doc']['url']); }
+        foreach ($t as $v) {
+            $tmp = idn_to_utf8(urldecode($v['doc']['url']));
+            if($tmp == false){
+                $host = idn_to_utf8(parse_url(urldecode($v['doc']['url']))['host']);
+                $tmp = str_replace(parse_url(urldecode($v['doc']['url']))['host'], $host, $v['doc']['url']);
+            }
+            $res[] = $tmp;
+        }
         $res=array_reverse($res);
         return $res;
     }

@@ -24,10 +24,20 @@
                             <p>Почта: {{$user->email}}</p>
                             <p>Telegram Логин: {{'@'.$user->name}}</p>
                             <p>Дата регистрации: {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at)->format('Y-m-d');}}</p>
-                            <button type="button" class="btn btn-success btn-rounded btn-fw">Сменить пароль</button>
+
                         </div>
                     </div>
                 </div>
+
+
+            </div>
+            <br>
+            <div id="app">
+                @if($user->is_admin == 1)
+                    <change-price></change-price>
+                @endif
+                    <change-password></change-password>
+
             </div>
         </div>
         <!-- content-wrapper ends -->

@@ -11,6 +11,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ClusterJob implements ShouldQueue
@@ -38,6 +39,9 @@ class ClusterJob implements ShouldQueue
     public function handle()
     {
         ini_set('max_execution_time', 172800);
+        $toLog = [];
+        $toLog['user_input'] = [];
+
         $clusterQuery = ClusterQuery::find($this->clusterTaskId);
 
         $region = $clusterQuery->region_code;
@@ -46,6 +50,7 @@ class ClusterJob implements ShouldQueue
         $siteList = json_decode($clusterQuery->siteList, true);
         $allSitesFromUserQueries = [];
         $queriesByUserQueries = [];
+        $toLog['AllTwenty'] = $siteList;
 
         foreach ($userQueries as $one){
             $res = $this->xmlStackQuery($one, $region, 10);
@@ -53,6 +58,7 @@ class ClusterJob implements ShouldQueue
             $allSitesFromUserQueries = array_merge($allSitesFromUserQueries, $res);
             $queriesByUserQueries[$one] = $res;
         }
+        $toLog['user_input'] = $queriesByUserQueries;
         $mostPopular = array_count_values($allSitesFromUserQueries);
         $mostPopularManyDem = [];
         foreach ($mostPopular as $key=>$one){
@@ -74,7 +80,7 @@ class ClusterJob implements ShouldQueue
                 break;
             }
         }
-
+        $toLog['bestFour'] = $bestFourSites;
         $result = [];
         foreach ($userQueries as $one){
             $res = [];
@@ -118,6 +124,8 @@ class ClusterJob implements ShouldQueue
         }
 
         $result = $this->array_sort($result, 'sum', SORT_DESC);
+
+        Storage::disk('local')->put('logse.json', json_encode($toLog, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
         $filePath = 'xlFiles/fileCluster'.time().'-'.rand(0,10000).'.xlsx';
         Excel::store(new QueriesClusterExport($result), $filePath);
@@ -190,7 +198,14 @@ class ClusterJob implements ShouldQueue
         $t =  $t['response']['results']['grouping']['group'];
 
         $res=[];
-        foreach ($t as $v) { $res[] = urldecode($v['doc']['url']); }
+        foreach ($t as $v) {
+            $tmp = idn_to_utf8(urldecode($v['doc']['url']));
+            if($tmp == false){
+                $host = idn_to_utf8(parse_url(urldecode($v['doc']['url']))['host']);
+                $tmp = str_replace(parse_url(urldecode($v['doc']['url']))['host'], $host, $v['doc']['url']);
+            }
+            $res[] = $tmp;
+        }
         $res=array_reverse($res);
         return $res;
     }
