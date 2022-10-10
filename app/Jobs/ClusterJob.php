@@ -112,7 +112,7 @@ class ClusterJob implements ShouldQueue
 
             if($res['sum'] == 1 || $res['sum'] == 2){
                 $tenSiteList = array_slice($siteList, 0, 10);
-                $countRes = array_intersect($tenSiteList,$queriesByUserQueries[$one]);
+                $countRes = count(array_intersect($tenSiteList,$queriesByUserQueries[$one]));
                 if($countRes >= 3){
                     $res['sum'] = 2;
                 }else{
