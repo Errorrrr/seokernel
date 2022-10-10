@@ -5503,7 +5503,8 @@ __webpack_require__.r(__webpack_exports__);
       old_pass: '',
       new_pass: '',
       new_pass_accept: '',
-      errorString: ''
+      errorString: '',
+      success: ''
     };
   },
   mounted: function mounted() {},
@@ -5512,6 +5513,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.errorString = '';
+      this.success = '';
       axios.post('/api/change_password', {
         old_pass: this.old_pass,
         new_pass: this.new_pass,
@@ -5523,6 +5525,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.old_pass = '';
           _this.new_pass = '';
           _this.new_pass_accept = '';
+          _this.success = 'Пароль успешно обновлен';
         }
       });
     }
@@ -6125,7 +6128,11 @@ var render = function render() {
         _vm.new_pass_accept = $event.target.value;
       }
     }
-  })]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.errorString))]), _vm._v(" "), _c("button", {
+  })]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.errorString))]), _vm._v(" "), _c("p", {
+    staticStyle: {
+      color: "green"
+    }
+  }, [_vm._v(_vm._s(_vm.success))]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary mr-2",
     attrs: {
       type: "submit"
