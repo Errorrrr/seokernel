@@ -16,7 +16,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class QueryAddController extends Controller
 {
     public function getPagesList(Request $request){
-        $region = $request->get('region') == null ? "" : $request->get('region');
+        $region = $request->get('region') == null ? "1" : $request->get('region');
         $xs_key = 'https://xmlstock.com/yandex/xml/?user=9455&key='.env('XMLSTACK_API_KEY');
      //   $region = $this->getYaRegionCode( $region );
         $query = ( '&query='.urlencode($request->get('request')) ) . ( $region ? '&lr=' . urlencode($region) : '' );
