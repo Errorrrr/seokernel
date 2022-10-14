@@ -53,6 +53,8 @@ Route::post('api/change_price', 'SettingsController@changePrice')->middleware(['
 Route::post('api/change_stops', 'SettingsController@changeStops')->middleware(['auth']);
 Route::post('api/change_password', 'SettingsController@changePass')->middleware(['auth']);
 Route::post('/bot_webhook', function () {
+    \Illuminate\Support\Facades\Log::debug('An informational message.');
+
     $Bot = new \SimpleBotAPI\TelegramBot(env('TELEGRAM_API'), new \App\Handlers\BotHandler());
     $Bot->OnWebhookUpdate();
 })->middleware('api');
