@@ -57,7 +57,7 @@ Route::post('/bot_webhook', function () {
 
     $Bot = new \SimpleBotAPI\TelegramBot(env('TELEGRAM_API'), new \App\Handlers\BotHandler());
     $Bot->OnWebhookUpdate();
-})->middleware('api');
+});
 
 Route::get('/settings', 'SettingsController@index')->middleware(['auth']);
 
