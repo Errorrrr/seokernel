@@ -52,12 +52,7 @@ Route::get('api/get_stops', 'SettingsController@getStops')->middleware(['auth'])
 Route::post('api/change_price', 'SettingsController@changePrice')->middleware(['auth']);
 Route::post('api/change_stops', 'SettingsController@changeStops')->middleware(['auth']);
 Route::post('api/change_password', 'SettingsController@changePass')->middleware(['auth']);
-Route::post('/Tqw23ET75kytVNZEUREI84/bot_webhook', function () {
-    \Illuminate\Support\Facades\Log::debug('An informational message.');
-
-    $Bot = new \SimpleBotAPI\TelegramBot(env('TELEGRAM_API'), new \App\Handlers\BotHandler());
-    $Bot->OnWebhookUpdate();
-});
+Route::post('/Tqw23ET75kytVNZEUREI84/bot_webhook', 'TelegramController@webhook');
 
 Route::get('/settings', 'SettingsController@index')->middleware(['auth']);
 
