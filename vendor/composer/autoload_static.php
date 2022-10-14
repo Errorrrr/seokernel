@@ -86,6 +86,9 @@ class ComposerStaticInit235530f3581d78e5a7df6eeb57326cf4
             'Symfony\\Component\\ErrorHandler\\' => 31,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
+            'SimpleBotAPI\\Exceptions\\' => 24,
+            'SimpleBotAPI\\Examples\\' => 22,
+            'SimpleBotAPI\\' => 13,
         ),
         'R' => 
         array (
@@ -322,6 +325,18 @@ class ComposerStaticInit235530f3581d78e5a7df6eeb57326cf4
         'Symfony\\Component\\Console\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
+        ),
+        'SimpleBotAPI\\Exceptions\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/muaath5/simple-bot-api/src/Exceptions',
+        ),
+        'SimpleBotAPI\\Examples\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/muaath5/simple-bot-api/examples',
+        ),
+        'SimpleBotAPI\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/muaath5/simple-bot-api/src',
         ),
         'Reliese\\' => 
         array (
@@ -600,7 +615,9 @@ class ComposerStaticInit235530f3581d78e5a7df6eeb57326cf4
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Exports\\QueriesClusterExport' => __DIR__ . '/../..' . '/app/Exports/QueriesClusterExport.php',
+        'App\\Exports\\QueriesClusterSheet' => __DIR__ . '/../..' . '/app/Exports/QueriesClusterSheet.php',
         'App\\Exports\\QueriesExport' => __DIR__ . '/../..' . '/app/Exports/QueriesExport.php',
+        'App\\Handlers\\BotHandler' => __DIR__ . '/../..' . '/app/Handlers/BotHandler.php',
         'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmablePasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmablePasswordController.php',
         'App\\Http\\Controllers\\Auth\\EmailVerificationNotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/EmailVerificationNotificationController.php',
@@ -5961,6 +5978,18 @@ class ComposerStaticInit235530f3581d78e5a7df6eeb57326cf4
         'SebastianBergmann\\Type\\UnknownType' => __DIR__ . '/..' . '/sebastian/type/src/type/UnknownType.php',
         'SebastianBergmann\\Type\\VoidType' => __DIR__ . '/..' . '/sebastian/type/src/type/VoidType.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'SimpleBotAPI\\BotSettings' => __DIR__ . '/..' . '/muaath5/simple-bot-api/src/BotSettings.php',
+        'SimpleBotAPI\\Examples\\ContactMeBot' => __DIR__ . '/..' . '/muaath5/simple-bot-api/examples/ContactMeBot.php',
+        'SimpleBotAPI\\Examples\\EchoBot' => __DIR__ . '/..' . '/muaath5/simple-bot-api/examples/EchoBot.php',
+        'SimpleBotAPI\\Examples\\FAQBot' => __DIR__ . '/..' . '/muaath5/simple-bot-api/examples/FAQBot.php',
+        'SimpleBotAPI\\Examples\\InlineQueriesIndexBot' => __DIR__ . '/..' . '/muaath5/simple-bot-api/examples/InlineQueriesIndexBot.php',
+        'SimpleBotAPI\\Examples\\WelcomeBot' => __DIR__ . '/..' . '/muaath5/simple-bot-api/examples/WelcomeBot.php',
+        'SimpleBotAPI\\Exceptions\\TelegramChatMigratedException' => __DIR__ . '/..' . '/muaath5/simple-bot-api/src/Exceptions/TelegramChatMigratedException.php',
+        'SimpleBotAPI\\Exceptions\\TelegramException' => __DIR__ . '/..' . '/muaath5/simple-bot-api/src/Exceptions/TelegramException.php',
+        'SimpleBotAPI\\Exceptions\\TelegramFloodException' => __DIR__ . '/..' . '/muaath5/simple-bot-api/src/Exceptions/TelegramFloodException.php',
+        'SimpleBotAPI\\Exceptions\\TelegramUnauthorizedException' => __DIR__ . '/..' . '/muaath5/simple-bot-api/src/Exceptions/TelegramUnauthorizedException.php',
+        'SimpleBotAPI\\TelegramBot' => __DIR__ . '/..' . '/muaath5/simple-bot-api/src/TelegramBot.php',
+        'SimpleBotAPI\\UpdatesHandler' => __DIR__ . '/..' . '/muaath5/simple-bot-api/src/UpdatesHandler.php',
         'Stringable' => __DIR__ . '/..' . '/myclabs/php-enum/stubs/Stringable.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\Attribute\\AsCommand' => __DIR__ . '/..' . '/symfony/console/Attribute/AsCommand.php',

@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Exports\QueriesClusterExport;
 use App\Exports\QueriesExport;
 use App\Models\ClusterQuery;
+use App\Models\Price;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -51,6 +52,10 @@ class ClusterJob implements ShouldQueue
         $allSitesFromUserQueries = [];
         $queriesByUserQueries = [];
         $toLog['AllTwenty'] = $siteList;
+
+        $splitQueries = $this->clearQueries($userQueries);
+        $userQueries = $splitQueries[0];
+        $minusQueries = $splitQueries[1];
 
         foreach ($userQueries as $one){
             $res = $this->xmlStackQuery($one, $region, 10);
@@ -119,16 +124,30 @@ class ClusterJob implements ShouldQueue
                     $res['sum'] = 0.5;
                 }
             }
-
-            array_push($result,$res);
+            if($res['sum'] >= 2){
+                array_push($result,$res);
+            }else{
+                array_push($minusQueries, $res['query']);
+            }
         }
 
         $result = $this->array_sort($result, 'sum', SORT_DESC);
 
-        Storage::disk('local')->put('logse.json', json_encode($toLog, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        $newResult = [];
+        foreach ($result as $one){
+            $newResult[] = [$one['query']];
+        }
+        $result = $newResult;
 
+        $newResult = [];
+        foreach ($minusQueries as $one){
+            $newResult[] = [$one];
+        }
+        $minusQueries = $newResult;
+
+        Storage::disk('local')->put('logse.json', json_encode($toLog, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         $filePath = 'xlFiles/fileCluster'.time().'-'.rand(0,10000).'.xlsx';
-        Excel::store(new QueriesClusterExport($result), $filePath);
+        Excel::store(new QueriesClusterExport($result,$minusQueries), $filePath);
 
         $clusterQuery->nameExcelFile = $filePath;
         $clusterQuery->status = 1;
@@ -208,5 +227,53 @@ class ClusterJob implements ShouldQueue
         }
         $res=array_reverse($res);
         return $res;
+    }
+
+    private function multineedle_stripos($haystack, $needles, $offset=0) {
+        foreach($needles as $needle) {
+            if(stripos($haystack, $needle, $offset) !== false){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private function isFirstOrLastPredlog($str, $predlogs){
+        $arr = explode(' ',$str);
+        if(in_array($arr[0],$predlogs) || in_array($arr[count($arr)-1],$predlogs)){
+            return true;
+        }
+        return false;
+    }
+
+    private function clearQueries($userQueries){
+
+        $settings = Price::find(1);
+        $stopFull = json_decode($settings->stopClusterFull, true);
+        $stopPart = json_decode($settings->stopClusterPart, true);
+        $minuses = [];
+        $good = [];
+        $predlogs = [
+            'без', 'в', 'вне', 'во', 'для', 'до', 'за', 'из', 'изо', 'к'
+            , 'ко', 'на', 'над', 'о', 'об', 'обо', 'от', 'ото', 'перед', 'по', 'под', 'после', 'пред', 'при', 'про', 'с'
+        ];
+
+        foreach($userQueries as $one){
+            if(
+                count(explode(' ', $one)) == 1 ||
+                //preg_match("/^[а-я]{1,3} /", $one) ||
+                //preg_match("/\ [а-я]{1,3}$/", $one) ||
+                $this->isFirstOrLastPredlog($one, $predlogs) ||
+                $this->multineedle_stripos($one, $stopPart) ||
+                in_array($one, $stopFull)
+            ){
+                $minuses[] = $one;
+            }else{
+                $good[] = $one;
+            }
+        }
+
+        return [$good, $minuses];
+
     }
 }

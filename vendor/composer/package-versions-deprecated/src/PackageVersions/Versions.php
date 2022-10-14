@@ -62,6 +62,7 @@ final class Versions
   'markbaker/complex' => '3.0.1@ab8bc271e404909db09ff2d5ffa1e538085c0f22',
   'markbaker/matrix' => '3.0.0@c66aefcafb4f6c269510e9ac46b82619a904c576',
   'monolog/monolog' => '2.8.0@720488632c590286b88b80e62aa3d3d551ad4a50',
+  'muaath5/simple-bot-api' => 'v5.4@53bf4bcd5233101c025076571f21992c8e63f432',
   'myclabs/php-enum' => '1.8.4@a867478eae49c9f59ece437ae7f9506bfaa27483',
   'nesbot/carbon' => '2.62.1@01bc4cdefe98ef58d1f9cb31bdbbddddf2a88f7a',
   'nette/schema' => 'v1.2.2@9a39cef03a5b34c7de64f551538cbba05c2be5df',
@@ -156,7 +157,7 @@ final class Versions
   'sebastian/type' => '3.2.0@fb3fe09c5f0bae6bc27ef3ce933a1e0ed9464b6e',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.1@34a41e998c2183e22995f158c581e7b5e755ab9e',
-  'laravel/laravel' => 'dev-main@3405136a402a40536eaf85c74584646682fb06fe',
+  'laravel/laravel' => 'dev-main@051f64b6991d62b3b65141bbbd9cc1c43ff28522',
 );
 
     private function __construct()

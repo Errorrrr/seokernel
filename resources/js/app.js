@@ -26,6 +26,7 @@ Vue.component('query-cluster', require('./components/QueryCluster.vue').default)
 Vue.component('add-cluster', require('./components/AddCluster.vue').default);
 Vue.component('change-price', require('./components/ChangePrice.vue').default);
 Vue.component('change-password', require('./components/ChangePassword.vue').default);
+Vue.component('change-stop-list', require('./components/ChangeStopList.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

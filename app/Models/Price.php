@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Price
- * 
+ *
  * @property int $id
  * @property float $cluster_price
  * @property float $conc_price
@@ -29,6 +29,9 @@ class Price extends Model
 
 	protected $fillable = [
 		'cluster_price',
-		'conc_price'
+		'conc_price',
+		'stopClusterPart',
+		'stopClusterFull',
+		'stopKeyso',
 	];
 }

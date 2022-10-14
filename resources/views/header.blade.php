@@ -53,10 +53,15 @@
                         <i class="mdi mdi-account menu-icon" style="font-size:2rem;"></i>
                         <span class="nav-profile-name">Профиль</span>
                     </a>
+
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                         <a class="dropdown-item" href="/settings">
                             <i class="mdi mdi-settings text-primary"></i>
                             Настройки
+                        </a>
+                        <a class="dropdown-item" href="/prices">
+                            <i class="mdi mdi-coin text-primary"></i>
+                            Тарифы
                         </a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

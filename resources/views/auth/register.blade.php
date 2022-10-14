@@ -17,16 +17,17 @@
                 <x-label for="name" :value="__('Telegram Логин')" />
 
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                После нажатия на "Регистрация" вы должны начать диалог с телеграм-ботом и он вышлет вам пароль
             </div>
 
             <!-- Email Address -->
-            <div class="mt-4">
+<!--            <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
 
-            <!-- Password -->
+            &lt;!&ndash; Password &ndash;&gt;
             <div class="mt-4">
                 <x-label for="password" :value="__('Пароль')" />
 
@@ -36,14 +37,14 @@
                                 required autocomplete="new-password" />
             </div>
 
-            <!-- Confirm Password -->
+            &lt;!&ndash; Confirm Password &ndash;&gt;
             <div class="mt-4">
                 <x-label for="password_confirmation" :value="__('Подтвердите пароль')" />
 
                 <x-input id="password_confirmation" class="block mt-1 w-full"
                                 type="password"
                                 name="password_confirmation" required />
-            </div>
+            </div>-->
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">

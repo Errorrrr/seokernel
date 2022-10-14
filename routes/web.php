@@ -33,6 +33,10 @@ Route::get('/queries/add_tusk', function () {
     return view('queries_add', ['user'=>\Illuminate\Support\Facades\Auth::user()]);
 })->middleware(['auth']);
 
+Route::get('/prices', function () {
+    return view('prices', ['price'=>\App\Models\Price::find(1), 'user'=>\Illuminate\Support\Facades\Auth::user()]);
+})->middleware(['auth']);
+
 Route::post('/api/pages_list', 'QueryAddController@getPagesList')->middleware(['auth']);
 Route::post('/api/add_task', 'QueryAddController@addTask')->middleware(['auth']);
 Route::post('/api/cluster_add_task', 'QueryClusterController@addTask')->middleware(['auth']);
@@ -44,9 +48,14 @@ Route::get('api/download_excel_cluster/{query}', 'QueryClusterController@downloa
 Route::post('api/delete_query', 'QueryConsController@deleteQuery')->middleware(['auth']);
 Route::post('api/delete_query_cluster', 'QueryClusterController@deleteQuery')->middleware(['auth']);
 Route::get('api/get_price', 'SettingsController@getPrices')->middleware(['auth']);
+Route::get('api/get_stops', 'SettingsController@getStops')->middleware(['auth']);
 Route::post('api/change_price', 'SettingsController@changePrice')->middleware(['auth']);
+Route::post('api/change_stops', 'SettingsController@changeStops')->middleware(['auth']);
 Route::post('api/change_password', 'SettingsController@changePass')->middleware(['auth']);
-
+Route::post('/bot_webhook', function () {
+    $Bot = new \SimpleBotAPI\TelegramBot(env('TELEGRAM_API'), new \App\Handlers\BotHandler());
+    $Bot->OnWebhookUpdate();
+})->middleware('api');
 
 Route::get('/settings', 'SettingsController@index')->middleware(['auth']);
 

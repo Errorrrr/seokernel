@@ -35,6 +35,7 @@
             <div id="app">
                 @if($user->is_admin == 1)
                     <change-price></change-price>
+                    <change-stop-list></change-stop-list>
                 @endif
                     <change-password></change-password>
 

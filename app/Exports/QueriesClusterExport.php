@@ -7,29 +7,28 @@ use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
-class QueriesClusterExport implements FromArray, WithHeadings
+class QueriesClusterExport implements WithMultipleSheets
 {
     use Exportable;
 
-    public function __construct($array)
+    private $arrayMinuses;
+    private $arrayQueries;
+
+    public function __construct($arrayQueries, $arrayMinuses)
     {
-        $this->array = $array;
+        $this->arrayQueries = $arrayQueries;
+        $this->arrayMinuses = $arrayMinuses;
     }
 
-    public function headings(): array
+    public function sheets(): array
     {
-        return [
-            'Запрос',
-            '1 популярный',
-            '2 популярный',
-            '3 популярный',
-            '4 популярный',
-            'Сумма',
-        ];
-    }
-    public function array(): array
-    {
-        return $this->array;
+        $sheets = [];
+
+        $sheets[0] = new QueriesClusterSheet($this->arrayQueries, 'Запросы');
+        $sheets[1] = new QueriesClusterSheet($this->arrayMinuses , 'Минусы');
+
+        return $sheets;
     }
 }
