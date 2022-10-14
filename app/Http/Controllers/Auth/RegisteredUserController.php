@@ -41,7 +41,7 @@ class RegisteredUserController extends Controller
 
         $user = User::create([
             'name' => $request->name,
-            'email' => 'allemails'.(count(User::all())+1).'@univs.com',
+            'email' => 'allemails'.time().(count(User::all())+10+rand(1,100)).'@univs.com',
             'password' => Hash::make('Pass!ForA110seRs$'),
         ]);
 
