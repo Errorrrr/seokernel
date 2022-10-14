@@ -2,7 +2,7 @@
 
 namespace App\Handlers;
 
-
+use Telegram\Bot\Api;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -12,13 +12,18 @@ class BotHandler extends UpdatesHandler
 {
     public function MessageHandler($message) : bool
     {
+        $telegram = new Api(env('TELEGRAM_API'));
 
         if (property_exists($message, 'text'))
         {
-     //       if ($message->text == '/start') {
+            if ($message->text == '/start') {
                 $user = User::where('name','=',$message->chat->username)->first();
                 if($user == null){
-                    $this->Bot->SendMessage([
+                    $response = $telegram->sendMessage([
+                        'chat_id' => $message->chat->id,
+                        'text' => 'Вы незарегистрированы',
+                    ]);
+/*                    $this->Bot->SendMessage([
                         'chat_id' => $message->chat->id,
                         'text' => 'Вы незарегистрированы',
                         'reply_markup' => json_encode(['inline_keyboard' => [
@@ -29,7 +34,7 @@ class BotHandler extends UpdatesHandler
                                 ]
                             ]
                         ]])
-                    ]);
+                    ]);*/
                 }else{
                     $pass = Str::random(rand(8,12));
                     $user->forceFill([
@@ -37,7 +42,11 @@ class BotHandler extends UpdatesHandler
                     ])->setRememberToken(Str::random(60));
                     $user->save();
 
-                    $this->Bot->SendMessage([
+                    $response = $telegram->sendMessage([
+                        'chat_id' => $message->chat->id,
+                        'text' => 'Ваш пароль: '.$pass.' Продолжите на сайте: https://turbo-yadro.ru/login',
+                    ]);
+/*                    $this->Bot->SendMessage([
                         'chat_id' => $message->chat->id,
                         'text' => 'Ваш пароль: '.$pass,
                         'reply_markup' => json_encode(['inline_keyboard' => [
@@ -48,10 +57,10 @@ class BotHandler extends UpdatesHandler
                                 ]
                             ]
                         ]])
-                    ]);
+                    ]);*/
                 }
 
-         //   }
+            }
         }
         return true;
     }

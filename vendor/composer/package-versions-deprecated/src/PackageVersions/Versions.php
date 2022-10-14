@@ -47,6 +47,7 @@ final class Versions
   'guzzlehttp/guzzle' => '7.5.0@b50a2a1251152e43f6a37f0fa053e730a67d25ba',
   'guzzlehttp/promises' => '1.5.2@b94b2807d85443f9719887892882d0329d1e2598',
   'guzzlehttp/psr7' => '2.4.1@69568e4293f4fa993f3b0e51c9723e1e17c41379',
+  'irazasyed/telegram-bot-sdk' => 'v3.9@c4c8250e334e94aab7b6b4a67850e39fd5a9384b',
   'laravel/breeze' => 'v1.9.4@98c79a68ae53c2193367238c019a2f988be44f4f',
   'laravel/framework' => 'v8.83.25@b77b908a9426efa41d6286a2ef4c3adbf5398ca1',
   'laravel/sanctum' => 'v2.15.1@31fbe6f85aee080c4dc2f9b03dc6dd5d0ee72473',
@@ -55,6 +56,7 @@ final class Versions
   'laravel/ui' => 'v3.4.6@65ec5c03f7fee2c8ecae785795b829a15be48c2c',
   'league/commonmark' => '2.3.5@84d74485fdb7074f4f9dd6f02ab957b1de513257',
   'league/config' => 'v1.1.1@a9d39eeeb6cc49d10a6e6c36f22c4c1f4a767f3e',
+  'league/event' => '2.2.0@d2cc124cf9a3fab2bb4ff963307f60361ce4d119',
   'league/flysystem' => '1.1.9@094defdb4a7001845300334e7c1ee2335925ef99',
   'league/mime-type-detection' => '1.11.0@ff6248ea87a9f116e78edd6002e39e5128a0d4dd',
   'maatwebsite/excel' => '3.1.43@3c5b95478fb6f76b9a6ab527d54afbb3afbda611',
@@ -157,7 +159,7 @@ final class Versions
   'sebastian/type' => '3.2.0@fb3fe09c5f0bae6bc27ef3ce933a1e0ed9464b6e',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.1@34a41e998c2183e22995f158c581e7b5e755ab9e',
-  'laravel/laravel' => 'dev-main@051f64b6991d62b3b65141bbbd9cc1c43ff28522',
+  'laravel/laravel' => 'dev-main@30e94d4be92b9c89565fe3151455068536698bbd',
 );
 
     private function __construct()
