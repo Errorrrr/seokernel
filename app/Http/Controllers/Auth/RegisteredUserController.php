@@ -49,6 +49,6 @@ class RegisteredUserController extends Controller
 
        // Auth::login($user);
 
-        return redirect('https://t.me/turbo_yadro_live');
+        return redirect('https://t.me/'.env('BOT_NAME'));
     }
 }
