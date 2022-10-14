@@ -5500,9 +5500,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      old_pass: '',
-      new_pass: '',
-      new_pass_accept: '',
       errorString: '',
       success: ''
     };
@@ -5514,17 +5511,10 @@ __webpack_require__.r(__webpack_exports__);
 
       this.errorString = '';
       this.success = '';
-      axios.post('/api/change_password', {
-        old_pass: this.old_pass,
-        new_pass: this.new_pass,
-        new_pass_accept: this.new_pass_accept
-      }).then(function (response) {
+      axios.post('/api/change_password', {}).then(function (response) {
         if (response.data != 'ok') {
           _this.errorString = response.data;
         } else {
-          _this.old_pass = '';
-          _this.new_pass = '';
-          _this.new_pass_accept = '';
           _this.success = 'Пароль успешно обновлен';
         }
       });
@@ -6090,88 +6080,7 @@ var render = function render() {
     staticClass: "card-title"
   }, [_vm._v("Сменить пароль")]), _vm._v(" "), _c("div", {
     staticClass: "forms-sample"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    attrs: {
-      "for": "exampleInputName1"
-    }
-  }, [_vm._v("Введите старый пароль")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.old_pass,
-      expression: "old_pass"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "password",
-      id: "exampleInputName1"
-    },
-    domProps: {
-      value: _vm.old_pass
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.old_pass = $event.target.value;
-      }
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    attrs: {
-      "for": "exampleInputEmail3"
-    }
-  }, [_vm._v("Введите новый пароль")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.new_pass,
-      expression: "new_pass"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "password",
-      id: "exampleInputEmail3"
-    },
-    domProps: {
-      value: _vm.new_pass
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.new_pass = $event.target.value;
-      }
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    attrs: {
-      "for": "exampleInputEmail3"
-    }
-  }, [_vm._v("Повторите новый пароль")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.new_pass_accept,
-      expression: "new_pass_accept"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "password",
-      id: "exampleInputEmail3"
-    },
-    domProps: {
-      value: _vm.new_pass_accept
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.new_pass_accept = $event.target.value;
-      }
-    }
-  })]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.errorString))]), _vm._v(" "), _c("p", {
+  }, [_vm._v("\n                Новый пароль вышлет наш телеграм бот.\n                "), _c("p", [_vm._v(_vm._s(_vm.errorString))]), _vm._v(" "), _c("p", {
     staticStyle: {
       color: "green"
     }
@@ -6183,7 +6092,7 @@ var render = function render() {
     on: {
       click: _vm.submit
     }
-  }, [_vm._v("Сохранить")])])])])]);
+  }, [_vm._v("Сменить пароль")])])])])]);
 };
 
 var staticRenderFns = [];

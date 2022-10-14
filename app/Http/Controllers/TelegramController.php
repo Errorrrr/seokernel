@@ -31,6 +31,7 @@ class TelegramController extends Controller
                 $user->forceFill([
                     'password' => Hash::make($pass)
                 ])->setRememberToken(Str::random(60));
+                $user->chat_id = $userid;
                 $user->save();
 
                 $response = $telegram->sendMessage([

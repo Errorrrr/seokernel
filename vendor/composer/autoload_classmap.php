@@ -25,6 +25,7 @@ return array(
     'App\\Http\\Controllers\\QueryClusterController' => $baseDir . '/app/Http/Controllers/QueryClusterController.php',
     'App\\Http\\Controllers\\QueryConsController' => $baseDir . '/app/Http/Controllers/QueryConsController.php',
     'App\\Http\\Controllers\\SettingsController' => $baseDir . '/app/Http/Controllers/SettingsController.php',
+    'App\\Http\\Controllers\\TelegramController' => $baseDir . '/app/Http/Controllers/TelegramController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',

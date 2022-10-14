@@ -641,6 +641,7 @@ class ComposerStaticInit235530f3581d78e5a7df6eeb57326cf4
         'App\\Http\\Controllers\\QueryClusterController' => __DIR__ . '/../..' . '/app/Http/Controllers/QueryClusterController.php',
         'App\\Http\\Controllers\\QueryConsController' => __DIR__ . '/../..' . '/app/Http/Controllers/QueryConsController.php',
         'App\\Http\\Controllers\\SettingsController' => __DIR__ . '/../..' . '/app/Http/Controllers/SettingsController.php',
+        'App\\Http\\Controllers\\TelegramController' => __DIR__ . '/../..' . '/app/Http/Controllers/TelegramController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',

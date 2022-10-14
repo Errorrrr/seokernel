@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Telegram\Bot\Api;
 
 class SettingsController extends Controller
 {
@@ -72,21 +73,21 @@ class SettingsController extends Controller
         return 'ok';
     }
 
-    public function changePass(Request $request){
-        $user = Auth::user();
-        if (Hash::check($request->get('old_pass'), $user->password)) {
-            if($request->get('new_pass') == $request->get('new_pass_accept')){
-                $user->forceFill([
-                    'password' => Hash::make($request->get('new_pass'))
-                ])->setRememberToken(Str::random(60));
-            }else{
-                return 'Новый и старый пароль не совпадают';
-            }
-            $user->save();
-        }else{
-            return 'Неверный старый пароль';
-        }
+    public function changePass(){
+        $telegram = new Api(env('TELEGRAM_API'));
 
+        $user = Auth::user();
+
+        $pass = Str::random(15);
+
+        $user->forceFill([
+            'password' => Hash::make($pass)
+        ])->setRememberToken(Str::random(60));
+        $user->save();
+        $telegram->sendMessage([
+            'chat_id' => $user->chat_id,
+            'text' => 'Ваш новый пароль: '.$pass,
+        ]);
 
         $user->save();
 
