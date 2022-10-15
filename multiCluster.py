@@ -150,5 +150,5 @@ while(isWorking):
         #processes.printAll()
 
 print(allQueries)
-with open('storage/app/result.json', 'w') as f:
+with open(os.path.dirname(os.path.realpath(__file__))+'/storage/app/result.json', 'w') as f:
     json.dump(allQueries, f, ensure_ascii=False)
