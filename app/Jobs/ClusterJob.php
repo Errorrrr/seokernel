@@ -67,7 +67,7 @@ class ClusterJob implements ShouldQueue
             'cluster_id'=>$clusterQuery->id,
         ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         Storage::disk('local')->delete('result.json');
-        shell_exec('python multiCluster.py '.env('PHP_FOR_ARTISAN').' '.(count($userQueries)-1));
+        shell_exec('python '.base_path().'/multiCluster.py '.env('PHP_FOR_ARTISAN').' '.(count($userQueries)-1));
 
         while (!Storage::disk('local')->exists('result.json')) {
             sleep(1);
