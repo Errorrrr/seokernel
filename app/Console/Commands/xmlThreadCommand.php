@@ -39,6 +39,7 @@ class xmlThreadCommand extends Command
      */
     public function handle()
     {
+        \Illuminate\Support\Facades\Log::debug('Начало запроса к серверу '.$this->argument('fileNum'));
 
         $queryFile = json_decode(Storage::disk('local')->get('xmlQueries.json'), true);
         $userQueries = $queryFile['userQueries'];
@@ -87,7 +88,6 @@ class xmlThreadCommand extends Command
     public function xmlStackQuery($query, $region, $count){
         $xs_key = 'https://xmlstock.com/yandex/xml/?user=9455&key='.env('XMLSTACK_API_KEY');
         $query = ( '&query='.urlencode($query) ) . ( $region ? '&lr=' . urlencode($region) : '' );
-        \Illuminate\Support\Facades\Log::debug('Начало запроса к серверу '.$this->argument('fileNum'));
 
 
         $resp = $this->curlReq($xs_key, $query);
