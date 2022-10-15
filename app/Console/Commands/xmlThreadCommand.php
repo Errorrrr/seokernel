@@ -39,7 +39,6 @@ class xmlThreadCommand extends Command
      */
     public function handle()
     {
-        \Illuminate\Support\Facades\Log::debug('Начало запроса к серверу '.$this->argument('fileNum'));
 
         $queryFile = json_decode(Storage::disk('local')->get('xmlQueries.json'), true);
         $userQueries = $queryFile['userQueries'];
@@ -50,12 +49,7 @@ class xmlThreadCommand extends Command
         $final['name'] = $userQueries[$this->argument('fileNum')];
         $final['query'] = $res;
 
-        $clusterQuery = ClusterQuery::find($queryFile['cluster_id']);
 
-        if($this->argument('fileNum') > $clusterQuery->countNowQueries){
-            $clusterQuery->countNowQueries = $this->argument('fileNum');
-            $clusterQuery->save();
-        }
 
         echo json_encode($final, JSON_UNESCAPED_UNICODE);
 

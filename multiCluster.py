@@ -147,7 +147,9 @@ while(isWorking):
         isWorking = False
     if i == 50:
         i = 0
-        #processes.printAll()
+        first, second, third = argv
+        subprocess.Popen(str(second)+' '+os.path.dirname(os.path.realpath(__file__))+'/artisan update:progress ' + str(postNum), executable='/bin/bash', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        processes.printAll()
 
 print(allQueries)
 with open(os.path.dirname(os.path.realpath(__file__))+'/storage/app/result.json', 'w') as f:
