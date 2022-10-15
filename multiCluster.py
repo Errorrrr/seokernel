@@ -30,8 +30,7 @@ class Process:
         first, second, third = argv
 
         self.fileNum = fileNum
-        self.process = subprocess.Popen(str(second)+' '+os.getcwd()+'/artisan xml:thread ' + str(fileNum), executable='/bin/bash', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        raise Exception(str(second)+' '+os.getcwd()+'/artisan xml:thread ' + str(fileNum))
+        self.process = subprocess.Popen(str(second)+' '+os.path.dirname(os.path.realpath(__file__))+'/artisan xml:thread ' + str(fileNum), executable='/bin/bash', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         print('Запущен процесс для номера потока:'+str(thread.num)+' и номера группы запросов №'+str(fileNum))
         self.thread = thread
         self.thread.setEnable()
