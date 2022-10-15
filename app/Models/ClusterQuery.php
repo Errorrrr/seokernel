@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class ClusterQuery
- * 
+ *
  * @property int $id
  * @property string $query
  * @property string $nameExcelFile
@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property int $user_id
- * 
+ *
  * @property User $user
  *
  * @package App\Models
@@ -46,7 +46,9 @@ class ClusterQuery extends Model
 		'siteList',
 		'queryList',
 		'status',
-		'user_id'
+		'user_id',
+		'countQueries',
+		'countNowQueries',
 	];
 
 	public function user()

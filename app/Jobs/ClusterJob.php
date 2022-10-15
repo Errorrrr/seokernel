@@ -57,11 +57,27 @@ class ClusterJob implements ShouldQueue
         $userQueries = $splitQueries[0];
         $minusQueries = $splitQueries[1];
 
-        foreach ($userQueries as $one){
-            $res = $this->xmlStackQuery($one, $region, 10);
-            usleep(7000);
-            $allSitesFromUserQueries = array_merge($allSitesFromUserQueries, $res);
-            $queriesByUserQueries[$one] = $res;
+        $clusterQuery->countQueries = count($userQueries);
+        $clusterQuery->save();
+/*        \Illuminate\Support\Facades\Log::debug('Старт работы с файлами');*/
+
+        Storage::disk('local')->put('xmlQueries.json', json_encode([
+            'userQueries'=>$userQueries,
+            'region'=>$region,
+            'cluster_id'=>$clusterQuery->id,
+        ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        Storage::disk('local')->delete('result.json');
+        shell_exec('python multiCluster.py '.env('PHP_FOR_ARTISAN').' '.(count($userQueries)-1));
+
+        while (!Storage::disk('local')->exists('result.json')) {
+            sleep(1);
+        }
+        $pythonRes = json_decode(Storage::disk('local')->get('result.json'), true);
+        \Illuminate\Support\Facades\Log::debug('Конец работы с файлами');
+
+        foreach ($pythonRes as $one){
+            $allSitesFromUserQueries = array_merge($allSitesFromUserQueries, $one['query']);
+            $queriesByUserQueries[$one['name']] = $one['query'];
         }
         $toLog['user_input'] = $queriesByUserQueries;
         $mostPopular = array_count_values($allSitesFromUserQueries);
@@ -152,6 +168,9 @@ class ClusterJob implements ShouldQueue
         $clusterQuery->nameExcelFile = $filePath;
         $clusterQuery->status = 1;
         $clusterQuery->save();
+
+/*        \Illuminate\Support\Facades\Log::debug('Конец работы с задачей');*/
+
     }
 
     public function array_sort($array, $on, $order=SORT_ASC)

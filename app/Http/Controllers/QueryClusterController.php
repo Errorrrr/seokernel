@@ -18,9 +18,9 @@ class QueryClusterController extends Controller
     public function getQueryCluster(){
         $user = Auth::user();
         $result = [];
-        foreach(ClusterQuery::where('user_id','=',$user->id)->orderBy('created_at','desc')->paginate(40) as $one){
+        foreach(ClusterQuery::where('user_id','=',$user->id)->paginate(40) as $one){
             $one['date'] = Carbon::createFromFormat('Y-m-d H:i:s', $one['created_at'])->format('Y-m-d');
-            array_push($result, $one);
+            array_unshift($result, $one);
         }
         return $result;
     }
@@ -54,14 +54,17 @@ class QueryClusterController extends Controller
         }else{
             return 'err';
         }
-        $clusterQuery = ClusterQuery::firstOrCreate(['query'=>$request->get('query')],[
+        $queryList = json_encode($request->get('userQueries'), JSON_UNESCAPED_UNICODE);
+        $clusterQuery = ClusterQuery::firstOrCreate(['query'=>$request->get('query'),'user_id'=>$user->id],[
             'status'=>0,
-            'queryList'=>json_encode($request->get('userQueries'), JSON_UNESCAPED_UNICODE),
+            'queryList'=>$queryList,
             'siteList'=>json_encode($request->get('list'), JSON_UNESCAPED_UNICODE),
             'query'=>$request->get('query'),
             'region_code'=>$request->get('region'),
             'user_id'=>$user->id,
             'nameExcelFile'=>'none',
+            'countQueries'=>0,
+            'countNowQueries'=>0,
         ]);
 
         ClusterJob::dispatch($clusterQuery->id);

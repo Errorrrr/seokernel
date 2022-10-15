@@ -37,6 +37,13 @@ Route::get('/prices', function () {
     return view('prices', ['price'=>\App\Models\Price::find(1), 'user'=>\Illuminate\Support\Facades\Auth::user()]);
 })->middleware(['auth']);
 
+Route::get('/pc-oferta', function () {
+    return view('conditions');
+});
+Route::get('/policy', function () {
+    return view('back_conditions');
+});
+
 Route::post('/api/pages_list', 'QueryAddController@getPagesList')->middleware(['auth']);
 Route::post('/api/add_task', 'QueryAddController@addTask')->middleware(['auth']);
 Route::post('/api/cluster_add_task', 'QueryClusterController@addTask')->middleware(['auth']);

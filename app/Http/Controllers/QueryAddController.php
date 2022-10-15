@@ -17,6 +17,14 @@ class QueryAddController extends Controller
 {
     public function getPagesList(Request $request){
         $region = $request->get('region') == null ? "1" : $request->get('region');
+
+        $settings = Price::find(1);
+        $stopKeyso = explode(PHP_EOL,json_decode($settings->stopKeyso, true)[0]);
+
+        if(in_array($request->get('request'), $stopKeyso)){
+            return 'err';
+        }
+
         $xs_key = 'https://xmlstock.com/yandex/xml/?user=9455&key='.env('XMLSTACK_API_KEY');
      //   $region = $this->getYaRegionCode( $region );
         $query = ( '&query='.urlencode($request->get('request')) ) . ( $region ? '&lr=' . urlencode($region) : '' );

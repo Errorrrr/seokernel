@@ -96,12 +96,17 @@
                 axios
                     .post('/api/pages_list', {request:this.queryString, limit: this.limit})
                     .then((response) => {
+
                         this.loading = '';
-                        let list = []
-                        response.data.map(function(value, key) {
-                            list.push({name:value,hide:0});
-                        });
-                        this.queries = list;
+                        if(response.data == 'err'){
+                            this.errorString += 'Вы ввели запрещённый запрос';
+                        }else{
+                            let list = []
+                            response.data.map(function(value, key) {
+                                list.push({name:value,hide:0});
+                            });
+                            this.queries = list;
+                        }
                     });
             },
             addTask: function() {

@@ -5358,15 +5358,20 @@ __webpack_require__.r(__webpack_exports__);
         limit: this.limit,
         region: this.region
       }).then(function (response) {
-        var list = [];
-        response.data.map(function (value, key) {
-          list.push({
-            name: value,
-            hide: 0
-          });
-        });
-        _this.queries = list;
         _this.loading = '';
+
+        if (response.data == 'err') {
+          _this.errorString += 'Вы ввели запрещённый запрос';
+        } else {
+          var list = [];
+          response.data.map(function (value, key) {
+            list.push({
+              name: value,
+              hide: 0
+            });
+          });
+          _this.queries = list;
+        }
       });
     },
     addTask: function addTask() {
@@ -5448,14 +5453,19 @@ __webpack_require__.r(__webpack_exports__);
         limit: this.limit
       }).then(function (response) {
         _this.loading = '';
-        var list = [];
-        response.data.map(function (value, key) {
-          list.push({
-            name: value,
-            hide: 0
+
+        if (response.data == 'err') {
+          _this.errorString += 'Вы ввели запрещённый запрос';
+        } else {
+          var list = [];
+          response.data.map(function (value, key) {
+            list.push({
+              name: value,
+              hide: 0
+            });
           });
-        });
-        _this.queries = list;
+          _this.queries = list;
+        }
       });
     },
     addTask: function addTask() {
@@ -5631,7 +5641,27 @@ __webpack_require__.r(__webpack_exports__);
         list.push(value);
       });
       _this.queries = list;
-    });
+    }); //Чтобы человеку не обновлять страницу
+
+    setInterval(function () {
+      var needReq = false;
+
+      _this.queries.map(function (value, key) {
+        if (value.status == 0) {
+          needReq = true;
+        }
+      });
+
+      if (needReq) {
+        axios.get('/api/get_query_cluster').then(function (response) {
+          var list = [];
+          response.data.map(function (value, key) {
+            list.push(value);
+          });
+          _this.queries = list;
+        });
+      }
+    }, 1000);
   },
   methods: {
     downloadExcel: function downloadExcel(query) {
@@ -6355,7 +6385,23 @@ var render = function render() {
       id: "recent-purchases-listing"
     }
   }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.queries, function (query, index) {
-    return _c("tr", [_c("td", [_vm._v(_vm._s(query.query))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(query.date))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(query.status == 1 ? "Готово" : "В работе"))]), _vm._v(" "), _c("td", [query.status == 1 ? _c("button", {
+    return _c("tr", [_c("td", [_vm._v(_vm._s(query.query))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(query.date))]), _vm._v(" "), query.status == 1 ? _c("td", [_vm._v("Готово")]) : _vm._e(), _vm._v(" "), query.status == 0 ? _c("td", [_c("div", {
+      staticClass: "progress"
+    }, [_c("div", {
+      staticClass: "progress-bar bg-warning",
+      staticStyle: {
+        width: "90%"
+      },
+      style: {
+        width: query.countNowQueries * 100 / query.countQueries + "%"
+      },
+      attrs: {
+        role: "progressbar",
+        "aria-valuenow": "0",
+        "aria-valuemin": "0",
+        "aria-valuemax": "100"
+      }
+    })]), _vm._v(" "), query.countQueries != 0 ? _c("span", [_vm._v(_vm._s(query.countNowQueries) + " / " + _vm._s(query.countQueries) + "\n                                    запросов обработано")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _c("td", [query.status == 1 ? _c("button", {
       staticClass: "btn btn-success btn-md",
       attrs: {
         type: "button"
