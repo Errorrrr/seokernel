@@ -31,7 +31,6 @@ class Process:
 
         self.fileNum = fileNum
         self.process = subprocess.Popen(str(second)+' '+os.getcwd()+'\artisan xml:thread ' + str(fileNum), executable='/bin/bash', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        raise Exception(str(second)+' artisan xml:thread ' + str(fileNum))
         print('Запущен процесс для номера потока:'+str(thread.num)+' и номера группы запросов №'+str(fileNum))
         self.thread = thread
         self.thread.setEnable()
