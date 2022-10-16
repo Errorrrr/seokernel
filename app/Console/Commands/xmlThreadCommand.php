@@ -80,7 +80,8 @@ class xmlThreadCommand extends Command
     }*/
 
     public function xmlStackQuery($query, $region, $count){
-        $xs_key = 'https://xmlstock.com/yandex/xml/?user=9455&key='.env('XMLSTACK_API_KEY');
+        //$xs_key = 'https://xmlstock.com/yandex/xml/?user=9455&key='.env('XMLSTACK_API_KEY');
+        $xs_key = 'http://xmlproxy.ru/search/xml?page=1&user=omi4sem%40mail.ru&key='.env('XMLPROXY_API_KEY');
         $query = ( '&query='.urlencode($query) ) . ( $region ? '&lr=' . urlencode($region) : '' );
 
 
