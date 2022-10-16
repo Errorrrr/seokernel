@@ -83,7 +83,7 @@ class xmlThreadCommand extends Command
         //$xs_key = 'https://xmlstock.com/yandex/xml/?user=9455&key='.env('XMLSTACK_API_KEY');
         $xs_key = 'http://xmlproxy.ru/search/xml?page=1&user=omi4sem%40mail.ru&key='.env('XMLPROXY_API_KEY');
         $query = ( '&query='.urlencode($query) ) . ( $region ? '&lr=' . urlencode($region) : '' );
-        \Illuminate\Support\Facades\Log::debug('Начало запроса к серверу'.$this->argument('fileNum'));
+/*        \Illuminate\Support\Facades\Log::debug('Начало запроса к серверу'.$this->argument('fileNum'));*/
 
         $resp = $this->curlReq($xs_key, $query);
         $xml = $resp[0];
@@ -95,7 +95,7 @@ class xmlThreadCommand extends Command
             $httpcode = $resp[1];
         }
 
-        \Illuminate\Support\Facades\Log::debug('Конец запроса к серверу'.$this->argument('fileNum'));
+/*        \Illuminate\Support\Facades\Log::debug('Конец запроса к серверу'.$this->argument('fileNum'));*/
 
         $res = $this->processXml($xml);
 
