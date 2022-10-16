@@ -49,6 +49,7 @@ return array(
     'App\\Models\\Price' => $baseDir . '/app/Models/Price.php',
     'App\\Models\\Query' => $baseDir . '/app/Models/Query.php',
     'App\\Models\\SearchRegion' => $baseDir . '/app/Models/SearchRegion.php',
+    'App\\Models\\Transactions' => $baseDir . '/app/Models/Transactions.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',

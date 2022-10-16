@@ -20,11 +20,12 @@ class SettingsController extends Controller
         if($user->is_admin == 1){
             $price = Price::where('id','=',1)->first();
             if($price == null){
-                $price = Price::firstOrCreate(['id'=>1,'cluster_price'=>0.25,'conc_price'=>20]);
+                $price = Price::firstOrCreate(['id'=>1,'cluster_price'=>0.25,'conc_price'=>20,'start_balance'=>500]);
             }
             return [
                 'cluster_price' => $price->cluster_price,
                 'conc_price' => $price->conc_price,
+                'start_balance' => $price->start_balance,
             ];
         }else{
             return 'err';
@@ -69,6 +70,7 @@ class SettingsController extends Controller
         $price = Price::find(1);
         $price->cluster_price = $request->get('cluster_price');
         $price->conc_price = $request->get('conc_price');
+        $price->start_balance = $request->get('start_balance');
         $price->save();
         return 'ok';
     }

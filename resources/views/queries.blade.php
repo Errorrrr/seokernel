@@ -16,11 +16,11 @@
                                 <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon" data-toggle="modal" data-target="#exampleModal">
                                     <i class="mdi mdi-comment-question-outline"></i>
                                 </button>
-                                <span style="padding:10px;">Инструкция</span>
+                                <span style="padding:10px;cursor: pointer;" data-toggle="modal" data-target="#exampleModal">Инструкция</span>
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
+                                    <div class="modal-dialog" role="document" style="max-width: 1000px;">
+                                        <div class="modal-content" >
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">Запросы конкурентов</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -28,15 +28,16 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <b>Зачем нужен:</b> Мгновенно получить все запросы конкурнетов.<br>
+                                                <p style="font-size:1rem;"><b>Зачем нужен:</b> Мгновенно получить все запросы конкурнетов.<br>
                                                 Незачем собирать семантику руками, когда она есть готовая у лидеров ниши.<br>
                                                 <br>
                                                 <b>Отличие от сбора по «старинке»</b><br>
                                                 Не нужно парсить данные, разбираться в сложных программах, покупать прокси и аккаунты, подбирать маркеры, тратить целый день, чтобы дождаться сбора всех данных и следить за процессом, и самое печальное, возможность ошибиться (человеческий фактор).<br>
+                                                <br>
                                                 Это позволяет удешевлять процесс и зарабатывать больше на разнице. Легче найти помощника, легче обучить и делегировать семантику или вовсе обойтись без него. Не нужно проверять за ним работу.<br>
                                                 <br>
                                                     <b>Как пользоваться:</b><br>
-                                                <ol>
+                                                <ol style="font-size:1rem;">
                                                     <li>Укажите основной ключ. Если не знаете какой, найдите несколько конкурентов, откройте их меню и найдите подходящий пункт, возьмите на этой странице из заголовка h1.</li>
                                                     <li>Нажмите кнопку «Выбрать конкурентов», отобразятся их страницы.</li>
                                                     <li>Исключите не подходящие по 2-м критериям: 1. Известный бренд (пример Яндекс, Озон, Ламода, валберис, любой агрегатор). 2. Не похожие на вашу страницу (агрегатор, а у вас, к примеру страница услуг). На против этих сайтов нажмите кнопку «Убрать», они должны сменить цвет на серый.</li>
@@ -44,7 +45,7 @@
                                                 </ol>
                                                 <br>
 
-                                                Запрещено использовать запросы, которые относятся к запрещенной деятельности в России.<br>
+                                                Запрещено использовать запросы, которые относятся к запрещенной деятельности в России.<br></p>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>

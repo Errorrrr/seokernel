@@ -43,7 +43,7 @@
                         <input style="width:100px;"
                                type="text" class="form-control" value="{{$user->balance}}" aria-label="Amount (to the nearest dollar)" disabled>
                         <div class="input-group-append">
-                            <button class="input-group-text bg-success text-white" data-toggle="modal" data-target="#exampleModal">
+                            <button class="input-group-text bg-success text-white" data-toggle="modal" data-target="#exampleModal2">
                                     <i class="mdi mdi-plus-circle-outline" style="font-size:1rem;"></i>
                                 </button>
                         </div>
@@ -109,6 +109,12 @@
                     </a>
                 </li>
                 <li class="nav-item" style="align-self: center;">
+                    <button class="nav-link navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="modal" data-target="#exampleModal2" >
+                        <i class="mdi mdi-plus-circle-outline"></i>
+                        <span class="menu-title" style="padding:10px;">Пополнить баланс &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    </button>
+                </li>
+                <li class="nav-item" style="align-self: center;">
                     <button class="nav-link navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize" >
                         <i class="mdi mdi-arrow-expand"></i>
                         <span class="menu-title" style="padding:10px;">Свернуть меню &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -117,11 +123,11 @@
 
             </ul>
         </nav>
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Пополнить баланс</h5>
+                        <h5 class="modal-title" id="exampleModalLabel2">Пополнить баланс</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

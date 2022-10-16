@@ -249,13 +249,31 @@ class ClusterJob implements ShouldQueue
     }
 
     private function multineedle_stripos($haystack, $needles, $offset=0) {
-        foreach($needles as $needle) {
-            if(stripos($haystack, $needle, $offset) !== false){
-                return true;
+        $phrase = explode(' ', $haystack);
+        foreach($phrase as $one){
+            foreach($needles as $needle) {
+                if(str_starts_with($one, $needle) !== false){
+                    return true;
+                }
             }
         }
+
         return false;
     }
+
+    private function multineedle_striposFul($haystack, $needles, $offset=0) {
+        $phrase = explode(' ', $haystack);
+        foreach($phrase as $one){
+            foreach($needles as $needle) {
+                if($one == $needle){
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
 
     private function isFirstOrLastPredlog($str, $predlogs){
         $arr = explode(' ',$str);
@@ -284,7 +302,7 @@ class ClusterJob implements ShouldQueue
                 //preg_match("/\ [а-я]{1,3}$/", $one) ||
                 $this->isFirstOrLastPredlog($one, $predlogs) ||
                 $this->multineedle_stripos($one, $stopPart) ||
-                in_array($one, $stopFull)
+                $this->multineedle_striposFul($one, $stopFull)
             ){
                 $minuses[] = $one;
             }else{

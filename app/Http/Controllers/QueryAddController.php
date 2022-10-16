@@ -15,13 +15,29 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class QueryAddController extends Controller
 {
+
+    private function multineedle_stripos($haystack, $needles, $offset=0) {
+        $phrase = explode(' ', $haystack);
+        foreach($phrase as $one){
+            foreach($needles as $needle) {
+                if(str_starts_with($one, $needle) !== false){
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+
     public function getPagesList(Request $request){
         $region = $request->get('region') == null ? "1" : $request->get('region');
 
         $settings = Price::find(1);
         $stopKeyso = explode(PHP_EOL,json_decode($settings->stopKeyso, true)[0]);
 
-        if(in_array($request->get('request'), $stopKeyso)){
+
+        if($this->multineedle_stripos($request->get('request'), $stopKeyso)){
             return 'err';
         }
 

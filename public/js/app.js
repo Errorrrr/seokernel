@@ -5549,7 +5549,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       price_cluster: 0,
-      price_conc: 0
+      price_conc: 0,
+      start_balance: 0
     };
   },
   mounted: function mounted() {
@@ -5558,13 +5559,15 @@ __webpack_require__.r(__webpack_exports__);
     axios.get('/api/get_price').then(function (response) {
       _this.price_cluster = response.data.cluster_price;
       _this.price_conc = response.data.conc_price;
+      _this.start_balance = response.data.start_balance;
     });
   },
   methods: {
     submit: function submit() {
       axios.post('/api/change_price', {
         cluster_price: this.price_cluster,
-        conc_price: this.price_conc
+        conc_price: this.price_conc,
+        start_balance: this.start_balance
       }).then(function (response) {});
     }
   }
@@ -6208,6 +6211,32 @@ var render = function render() {
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.price_cluster = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "exampleInputEmail3"
+    }
+  }, [_vm._v("Стартовый баланс юзера")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.start_balance,
+      expression: "start_balance"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      id: "exampleInputEmail4"
+    },
+    domProps: {
+      value: _vm.start_balance
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.start_balance = $event.target.value;
       }
     }
   })]), _vm._v(" "), _c("button", {

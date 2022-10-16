@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Price;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -43,6 +44,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => 'allemails'.time().(count(User::all())+10+rand(1,100)).'@univs.com',
             'password' => Hash::make('Pass!ForA110seRs$'),
+            'balance'=>Price::find(1)->start_balance,
         ]);
 
         event(new Registered($user));

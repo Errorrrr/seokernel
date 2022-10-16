@@ -12,6 +12,10 @@
                         <label for="exampleInputEmail3">Цена "Кластеризатор"</label>
                         <input class="form-control" id="exampleInputEmail3" v-model="price_cluster">
                     </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail3">Стартовый баланс юзера</label>
+                        <input class="form-control" id="exampleInputEmail4" v-model="start_balance">
+                    </div>
                     <button type="submit" class="btn btn-primary mr-2" v-on:click="submit">Сохранить</button>
                 </div>
             </div>
@@ -25,6 +29,7 @@
             return {
                 price_cluster: 0,
                 price_conc: 0,
+                start_balance: 0,
             }
         },
         mounted() {
@@ -33,12 +38,13 @@
                 .then((response) => {
                     this.price_cluster = response.data.cluster_price;
                     this.price_conc = response.data.conc_price;
+                    this.start_balance = response.data.start_balance;
                 });
         },
         methods: {
             submit: function() {
                 axios
-                    .post('/api/change_price', {cluster_price:this.price_cluster, conc_price: this.price_conc})
+                    .post('/api/change_price', {cluster_price:this.price_cluster, conc_price: this.price_conc, start_balance: this.start_balance})
                     .then((response) => {
 
                     });
