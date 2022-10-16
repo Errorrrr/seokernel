@@ -37,6 +37,8 @@ Route::get('/prices', function () {
     return view('prices', ['price'=>\App\Models\Price::find(1), 'user'=>\Illuminate\Support\Facades\Auth::user()]);
 })->middleware(['auth']);
 
+Route::post('/payment', 'TinkoffController@createPayment')->middleware(['auth']);
+
 Route::get('/pc-oferta', function () {
     return view('conditions');
 });

@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Console\\Commands\\UpdateProgressBar' => $baseDir . '/app/Console/Commands/UpdateProgressBar.php',
     'App\\Console\\Commands\\xmlThreadCommand' => $baseDir . '/app/Console/Commands/xmlThreadCommand.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
@@ -27,6 +28,7 @@ return array(
     'App\\Http\\Controllers\\QueryConsController' => $baseDir . '/app/Http/Controllers/QueryConsController.php',
     'App\\Http\\Controllers\\SettingsController' => $baseDir . '/app/Http/Controllers/SettingsController.php',
     'App\\Http\\Controllers\\TelegramController' => $baseDir . '/app/Http/Controllers/TelegramController.php',
+    'App\\Http\\Controllers\\TinkoffController' => $baseDir . '/app/Http/Controllers/TinkoffController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',

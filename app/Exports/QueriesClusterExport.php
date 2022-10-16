@@ -27,7 +27,7 @@ class QueriesClusterExport implements WithMultipleSheets
         $sheets = [];
 
         $sheets[0] = new QueriesClusterSheet($this->arrayQueries, 'Запросы');
-        $sheets[1] = new QueriesClusterSheet($this->arrayMinuses , 'Минусы');
+        $sheets[1] = new QueriesClusterSheet($this->arrayMinuses , 'Не подходит');
 
         return $sheets;
     }

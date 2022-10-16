@@ -13,8 +13,6 @@ class TelegramController extends Controller
     public function webhook(){
         $telegram = new Api(env('TELEGRAM_API'));
         $requ= json_decode(file_get_contents('php://input'),true);
-        \Illuminate\Support\Facades\Log::debug($requ);
-
         $userid = $requ['message']['from']['id'];
         $text   = $requ['message']['text'];
 

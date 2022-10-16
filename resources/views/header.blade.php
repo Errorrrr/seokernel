@@ -43,12 +43,13 @@
                         <input style="width:100px;"
                                type="text" class="form-control" value="{{$user->balance}}" aria-label="Amount (to the nearest dollar)" disabled>
                         <div class="input-group-append">
-                            <span class="input-group-text bg-success text-white">
+                            <button class="input-group-text bg-success text-white" data-toggle="modal" data-target="#exampleModal">
                                     <i class="mdi mdi-plus-circle-outline" style="font-size:1rem;"></i>
-                                </span>
+                                </button>
                         </div>
                     </div>
                 </div>
+
                 <li class="nav-item nav-profile dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
                         <i class="mdi mdi-account menu-icon" style="font-size:2rem;"></i>
@@ -116,6 +117,31 @@
 
             </ul>
         </nav>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Пополнить баланс</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form class="forms-sample" method="post" action="/payment">
+                        @csrf
+                        <div class="modal-body">
+                            Введите сумму для пополнения в рублях
+                            <input type="number" class="form-control" id="input" placeholder="Сумма" name="sum" min="1" value="1">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Оплатить</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
         <!-- partial -->
         @yield('content')
 

@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithTitle;
 
-class QueriesClusterSheet implements FromArray, WithHeadings, WithTitle
+class QueriesClusterSheet implements FromArray, WithTitle
 {
     use Exportable;
 
@@ -19,12 +19,6 @@ class QueriesClusterSheet implements FromArray, WithHeadings, WithTitle
         $this->title = $title;
     }
 
-    public function headings(): array
-    {
-        return [
-            'Запрос',
-        ];
-    }
     public function array(): array
     {
         return $this->array;
