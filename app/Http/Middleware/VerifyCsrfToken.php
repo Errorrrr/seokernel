@@ -13,5 +13,6 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/Tqw23ET75kytVNZEUREI84/bot_webhook/',
+        '/payment-hook/',
     ];
 }
