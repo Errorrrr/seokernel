@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transactions;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,6 +45,14 @@ class TinkoffController extends Controller
     public function hookPayment(){
         $requ= json_decode(file_get_contents('php://input'),true);
         \Illuminate\Support\Facades\Log::debug($requ);
+        $trans = Transactions::where('order_id','=',$requ['OrderId'])->first();
+        if($requ['Status'] == 'CONFIRMED'){
+           $user = User::find($trans->user_id);
+           $user->balance += $requ['Amount']/100;
+           $user->save();
+           $trans->status = 1;
+           $trans->save();
+        }
         return 'OK';
     }
 }
