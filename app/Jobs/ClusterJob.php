@@ -56,6 +56,8 @@ class ClusterJob implements ShouldQueue
         $splitQueries = $this->clearQueries($userQueries);
         $userQueries = $splitQueries[0];
         $minusQueries = $splitQueries[1];
+        $toLog['userQueries'] = $userQueries;
+        $toLog['minusQueries'] = $minusQueries;
 
         $clusterQuery->countQueries = count($userQueries);
         $clusterQuery->countMinusQueries = count($minusQueries);
@@ -103,6 +105,7 @@ class ClusterJob implements ShouldQueue
             }
         }
         $toLog['bestFour'] = $bestFourSites;
+        Storage::disk('local')->put('logse.json', json_encode($toLog, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         $result = [];
         foreach ($userQueries as $one){
             $res = [];
