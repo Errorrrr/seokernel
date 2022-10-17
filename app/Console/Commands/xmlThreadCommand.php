@@ -119,7 +119,7 @@ class xmlThreadCommand extends Command
     private function processXml($t){
         $t = new \SimpleXMLElement( $t );
         $t = json_decode( json_encode( $t, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES ), 1);
-        \Illuminate\Support\Facades\Log::debug($t);
+      //  \Illuminate\Support\Facades\Log::debug($t);
         $t =  $t['response']['results']['grouping']['group'];
 
         $res=[];
