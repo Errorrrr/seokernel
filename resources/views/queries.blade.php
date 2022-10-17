@@ -57,10 +57,28 @@
                             </div>
                             <div class="d-flex">
 
-                                <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon">
+                                <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon" data-toggle="modal" data-target="#exampleModal3">
                                     <i class="mdi mdi-play-box-outline"></i>
                                 </button>
-                                <span style="padding:10px;">Видео-инструкция</span>
+                                <span style="padding:10px;cursor: pointer;" data-toggle="modal" data-target="#exampleModal3">Видео-инструкция</span>
+                                <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+                                    <div class="modal-dialog" role="document" style="max-width: 1000px;">
+                                        <div class="modal-content" >
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Запросы конкурентов</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <iframe width="970" height="600" src="https://www.youtube.com/embed/5I2PtHkshqQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
