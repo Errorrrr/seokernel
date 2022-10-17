@@ -26,7 +26,7 @@
                                              aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
 
-                                    <span v-if="query.countQueries != 0">{{query.countNowQueries}} / {{query.countQueries}}
+                                    <span v-if="query.countQueries != 0">{{query.countNowQueries + query.countMinusQueries}} / {{query.countQueries + query.countMinusQueries}}
                                         запросов обработано</span>
                                 </td>
                                 <td>

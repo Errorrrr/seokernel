@@ -58,6 +58,7 @@ class ClusterJob implements ShouldQueue
         $minusQueries = $splitQueries[1];
 
         $clusterQuery->countQueries = count($userQueries);
+        $clusterQuery->countMinusQueries = count($minusQueries);
         $clusterQuery->save();
 /*        \Illuminate\Support\Facades\Log::debug('Старт работы с файлами');*/
 

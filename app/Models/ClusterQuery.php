@@ -49,6 +49,7 @@ class ClusterQuery extends Model
 		'user_id',
 		'countQueries',
 		'countNowQueries',
+		'countMinusQueries',
 	];
 
 	public function user()

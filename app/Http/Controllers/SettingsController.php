@@ -6,12 +6,15 @@ use App\Models\Price;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Telegram\Bot\Api;
 
 class SettingsController extends Controller
 {
     public function index(){
+/*        echo        implode('<br>',json_decode(Storage::disk('local')->get('test.json'), true)['userQueries']);
+        dd(1);*/
         return view('settings', ['user'=>Auth::user()]);
     }
 

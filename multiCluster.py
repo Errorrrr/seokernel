@@ -145,7 +145,7 @@ while(isWorking):
     if not processes.hasWorkingProcesses() and posts.getPostNum() is None:
         print("Нет активных процессов, нет неразобранных запросов!")
         isWorking = False
-    if i == 500:
+    if i == 50:
         i = 0
         first, second, third = argv
         subprocess.Popen(str(second)+' '+os.path.dirname(os.path.realpath(__file__))+'/artisan update:progress ' + str(postNum), executable='/bin/bash', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)

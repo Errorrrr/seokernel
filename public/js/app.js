@@ -6430,7 +6430,7 @@ var render = function render() {
         "aria-valuemin": "0",
         "aria-valuemax": "100"
       }
-    })]), _vm._v(" "), query.countQueries != 0 ? _c("span", [_vm._v(_vm._s(query.countNowQueries) + " / " + _vm._s(query.countQueries) + "\n                                    запросов обработано")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _c("td", [query.status == 1 ? _c("button", {
+    })]), _vm._v(" "), query.countQueries != 0 ? _c("span", [_vm._v(_vm._s(query.countNowQueries + query.countMinusQueries) + " / " + _vm._s(query.countQueries + query.countMinusQueries) + "\n                                    запросов обработано")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _c("td", [query.status == 1 ? _c("button", {
       staticClass: "btn btn-success btn-md",
       attrs: {
         type: "button"
