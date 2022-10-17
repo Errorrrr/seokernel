@@ -38,6 +38,7 @@ Route::get('/prices', function () {
 })->middleware(['auth']);
 
 Route::post('/payment', 'TinkoffController@createPayment')->middleware(['auth']);
+Route::post('/payment-hook', 'TinkoffController@hookPayment');
 
 Route::get('/pc-oferta', function () {
     return view('conditions');

@@ -40,4 +40,10 @@ class TinkoffController extends Controller
         $result = json_decode($result, true);
         return redirect($result['PaymentURL']);
     }
+
+    public function hookPayment(){
+        $requ= json_decode(file_get_contents('php://input'),true);
+        \Illuminate\Support\Facades\Log::debug($requ);
+        return 'OK';
+    }
 }
