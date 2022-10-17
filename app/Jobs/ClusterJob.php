@@ -76,7 +76,7 @@ class ClusterJob implements ShouldQueue
             sleep(1);
         }
         $pythonRes = json_decode(Storage::disk('local')->get('result.json'), true);
-        \Illuminate\Support\Facades\Log::debug('Конец работы с файлами');
+/*        \Illuminate\Support\Facades\Log::debug('Конец работы с файлами');*/
 
         foreach ($pythonRes as $one){
             $allSitesFromUserQueries = array_merge($allSitesFromUserQueries, $one['query']);
@@ -144,6 +144,7 @@ class ClusterJob implements ShouldQueue
                     $res['sum'] = 0.5;
                 }
             }
+
             if($res['sum'] >= 2){
                 array_push($result,$res);
             }else{
@@ -161,7 +162,11 @@ class ClusterJob implements ShouldQueue
 
         $newResult = [];
         foreach ($minusQueries as $one){
-            $newResult[] = [$one];
+            if(is_array($one)){
+                $newResult[] = $one;
+            }else{
+                $newResult[] = [$one];
+            }
         }
         $minusQueries = $newResult;
 
@@ -300,6 +305,13 @@ class ClusterJob implements ShouldQueue
         ];
 
         foreach($userQueries as $one){
+/*            \Illuminate\Support\Facades\Log::debug($one);
+            \Illuminate\Support\Facades\Log::debug([(count(explode(' ', $one)) == 1) ,
+                $this->isFirstOrLastPredlog($one, $predlogs),
+                $this->multineedle_stripos($one, $stopPart),
+                $this->multineedle_striposFul($one, $stopFull)
+            ]);*/
+
             if(
                 count(explode(' ', $one)) == 1 ||
                 //preg_match("/^[а-я]{1,3} /", $one) ||

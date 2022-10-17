@@ -18,8 +18,9 @@
                         </autocomplete>
                         <button type="submit" class="btn btn-primary mb-2"
                                 v-on:click="submit" :disabled="loading != ''">Получить конкурентов</button>
-                        <span >{{this.errorString}}</span>
                     </div>
+                    <span style="color:red;font-size: 0.85rem;" >{{this.errorString}}</span>
+
                 </div>
             </div>
         </div>

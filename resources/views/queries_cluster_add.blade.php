@@ -73,8 +73,8 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <div class="modal-body">
-                                                <iframe width="970" height="600" src="https://www.youtube.com/embed/mDG7jZgV3r8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                            <div class="modal-body" id="videoBody">
+                                                <iframe width="970" id="videoHelp" height="600" src="https://www.youtube.com/embed/mDG7jZgV3r8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>

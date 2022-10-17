@@ -192,6 +192,16 @@
 <script src="/js/jquery.dataTables.js"></script>
 <script src="/js/dataTables.bootstrap4.js"></script>
 <!-- End custom js for this page-->
+
+<script>
+    $('#exampleModal3').on('hidden.bs.modal', function (e) {
+        let srcVideo = $('#videoHelp').attr('src');
+        document.getElementById('videoHelp').remove();
+        $("#videoBody").append('<iframe width="970" id="videoHelp" height="600" src="'+srcVideo+'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+
+    });
+</script>
+
 </body>
 
 </html>

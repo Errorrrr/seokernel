@@ -5799,7 +5799,12 @@ var render = function render() {
     on: {
       click: _vm.submit
     }
-  }, [_vm._v("Получить конкурентов")]), _vm._v(" "), _c("span", [_vm._v(_vm._s(this.errorString))])], 1)])])]) : _vm._e(), _vm._v(" "), _c("div", {
+  }, [_vm._v("Получить конкурентов")])], 1), _vm._v(" "), _c("span", {
+    staticStyle: {
+      color: "red",
+      "font-size": "0.85rem"
+    }
+  }, [_vm._v(_vm._s(this.errorString))])])])]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-md-12 stretch-card"
@@ -6006,7 +6011,12 @@ var render = function render() {
     on: {
       click: _vm.submit
     }
-  }, [_vm._v("Получить конкурентов")]), _vm._v(" "), _c("span", [_vm._v(_vm._s(this.errorString))])])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Получить конкурентов")]), _vm._v(" "), _c("br")]), _vm._v(" "), _c("span", {
+    staticStyle: {
+      color: "red",
+      "font-size": "0.85rem"
+    }
+  }, [_vm._v(_vm._s(this.errorString))])])])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-md-12 stretch-card"
