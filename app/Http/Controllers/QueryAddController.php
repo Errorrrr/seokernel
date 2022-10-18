@@ -41,7 +41,15 @@ class QueryAddController extends Controller
             return 'err';
         }
 
-        $xs_key = 'https://xmlstock.com/yandex/xml/?user=9455&key='.env('XMLSTACK_API_KEY');
+
+        $checkPrice = file_get_contents('https://xmlproxy.ru/balance.php?user=omi4sem%40mail.ru&key='.env('XMLPROXY_API_KEY'));
+        $jsonInfo = json_decode($checkPrice, true);
+        if($jsonInfo['cur_cost'] > 7){
+            $xs_key = 'https://xmlstock.com/yandex/xml/?user=9455&key='.env('XMLSTACK_API_KEY');
+        }else{
+            $xs_key = 'http://xmlproxy.ru/search/xml?page=1&user=omi4sem%40mail.ru&key='.env('XMLPROXY_API_KEY');
+        }
+
      //   $region = $this->getYaRegionCode( $region );
         $query = ( '&query='.urlencode($request->get('request')) ) . ( $region ? '&lr=' . urlencode($region) : '' );
         $xml = file_get_contents($xs_key . $query);

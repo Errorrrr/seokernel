@@ -36,8 +36,11 @@ class Process:
         self.thread.setEnable()
 
     def offProcess(self):
-        for line in self.process.stdout:
-           allQueries.append(json.loads(line.rstrip()))
+        try:
+            for line in self.process.stdout:
+                       allQueries.append(json.loads(line.rstrip()))
+        except ValueError:
+            test = 1
         print('Закончилась работа для потока:'+str(self.thread.num)+' и номера группы запросов '+str(self.fileNum))
         self.thread.setDisable()
 

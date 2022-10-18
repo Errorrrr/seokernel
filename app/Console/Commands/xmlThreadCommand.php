@@ -81,12 +81,12 @@ class xmlThreadCommand extends Command
 
     public function xmlStackQuery($query, $region, $count){
 
-        $checkPrice = $this->curlReq('https://xmlproxy.ru/balance.php?user=omi4sem%40mail.ru&key=MTY0MDI1MTI3Nzg3ODg1ODk3NjU3Mjc1Mzc1', '');
+        $checkPrice = $this->curlReq('https://xmlproxy.ru/balance.php?user=omi4sem%40mail.ru&key='.env('XMLPROXY_API_KEY'), '');
         $jsonInfo = $checkPrice[0];
         $httpcode = $checkPrice[1];
         while($httpcode != 200){
             sleep(3);
-            $checkPrice = $this->curlReq('https://xmlproxy.ru/balance.php?user=omi4sem%40mail.ru&key=MTY0MDI1MTI3Nzg3ODg1ODk3NjU3Mjc1Mzc1', '');
+            $checkPrice = $this->curlReq('https://xmlproxy.ru/balance.php?user=omi4sem%40mail.ru&key='.env('XMLPROXY_API_KEY'), '');
             $jsonInfo = $checkPrice[0];
             $httpcode = $checkPrice[1];
         }
