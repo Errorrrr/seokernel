@@ -94,7 +94,7 @@ class xmlThreadCommand extends Command
         if($jsonInfo['cur_cost'] > 7){
             $xs_key = 'https://xmlstock.com/yandex/xml/?user=9455&key='.env('XMLSTACK_API_KEY');
         }else{
-            $xs_key = 'http://xmlproxy.ru/search/xml?groupby=attr%3Dd.mode%3Ddeep.groups-on-page%3D5.docs-in-group%3D3&maxpassages=3&page=1&user=omi4sem%40mail.ru&key='.env('XMLPROXY_API_KEY');
+            $xs_key = 'http://xmlproxy.ru/search/xml?groupby=attr%3Dd.mode%3Ddeep.groups-on-page%3D5.docs-in-group%3D3&user=omi4sem%40mail.ru&key='.env('XMLPROXY_API_KEY');
         }
 
         $query = ( '&query='.urlencode($query) ) . ( $region ? '&lr=' . urlencode($region) : '' );
@@ -139,10 +139,15 @@ class xmlThreadCommand extends Command
 
         $res=[];
         foreach ($t as $v) {
-            $tmp = idn_to_utf8(urldecode($v['doc']['url']));
+            if(!isset($v['doc'][0])){
+                $prefix = $v['doc'];
+            }else{
+                $prefix = $v['doc'][0];
+            }
+            $tmp = idn_to_utf8(urldecode($prefix['url']));
             if($tmp == false){
-                $host = idn_to_utf8(parse_url(urldecode($v['doc']['url']))['host']);
-                $tmp = str_replace(parse_url(urldecode($v['doc']['url']))['host'], $host, $v['doc']['url']);
+                $host = idn_to_utf8(parse_url(urldecode($prefix['url']))['host']);
+                $tmp = str_replace(parse_url(urldecode($prefix['url']))['host'], $host, $prefix['url']);
             }
             $res[] = $tmp;
         }
