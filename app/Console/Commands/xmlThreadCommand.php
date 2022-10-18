@@ -80,8 +80,23 @@ class xmlThreadCommand extends Command
     }*/
 
     public function xmlStackQuery($query, $region, $count){
-        //$xs_key = 'https://xmlstock.com/yandex/xml/?user=9455&key='.env('XMLSTACK_API_KEY');
-        $xs_key = 'http://xmlproxy.ru/search/xml?page=1&user=omi4sem%40mail.ru&key='.env('XMLPROXY_API_KEY');
+
+        $checkPrice = $this->curlReq('https://xmlproxy.ru/balance.php?user=omi4sem%40mail.ru&key=MTY0MDI1MTI3Nzg3ODg1ODk3NjU3Mjc1Mzc1', '');
+        $jsonInfo = $checkPrice[0];
+        $httpcode = $checkPrice[1];
+        while($httpcode != 200){
+            sleep(3);
+            $checkPrice = $this->curlReq('https://xmlproxy.ru/balance.php?user=omi4sem%40mail.ru&key=MTY0MDI1MTI3Nzg3ODg1ODk3NjU3Mjc1Mzc1', '');
+            $jsonInfo = $checkPrice[0];
+            $httpcode = $checkPrice[1];
+        }
+        $jsonInfo = json_decode($jsonInfo, true);
+        if($jsonInfo['cur_cost'] > 7){
+            $xs_key = 'https://xmlstock.com/yandex/xml/?user=9455&key='.env('XMLSTACK_API_KEY');
+        }else{
+            $xs_key = 'http://xmlproxy.ru/search/xml?page=1&user=omi4sem%40mail.ru&key='.env('XMLPROXY_API_KEY');
+        }
+
         $query = ( '&query='.urlencode($query) ) . ( $region ? '&lr=' . urlencode($region) : '' );
 /*        \Illuminate\Support\Facades\Log::debug('Начало запроса к серверу'.$this->argument('fileNum'));*/
 
