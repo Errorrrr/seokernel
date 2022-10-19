@@ -47,7 +47,7 @@ class QueryAddController extends Controller
         if($jsonInfo['cur_cost'] > 7){
             $xs_key = 'https://xmlstock.com/yandex/xml/?user=9455&key='.env('XMLSTACK_API_KEY');
         }else{
-            $xs_key = 'http://xmlproxy.ru/search/xml?groupby=attr%3Dd.mode%3Ddeep.groups-on-page%3D5.docs-in-group%3D3&user=omi4sem%40mail.ru&key='.env('XMLPROXY_API_KEY');
+            $xs_key = 'http://xmlproxy.ru/search/xml?groupby=attr%3Dd.mode%3Ddeep.groups-on-page%3D10.docs-in-group%3D3&user=omi4sem%40mail.ru&key='.env('XMLPROXY_API_KEY');
         }
 
      //   $region = $this->getYaRegionCode( $region );
