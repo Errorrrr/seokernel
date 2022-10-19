@@ -50,9 +50,29 @@ class ClusterJob implements ShouldQueue
         $userQueries = json_decode($clusterQuery->queryList);
         $userQueries = explode(PHP_EOL, $userQueries);
         $siteList = json_decode($clusterQuery->siteList, true);
+        $fullSiteList = json_decode($clusterQuery->fullSiteList, true);
+        $resFullSite = [];
+        $hiddenSites = [];
+        foreach ($fullSiteList as $one){
+            if($one['hide'] == 1){
+                $hiddenSites[] = parse_url($one['name'])['host'];
+            }
+        }
+
+        $tenDomenList = array_slice($siteList, 0, 10);
+/*        $tenResult = [];
+        foreach($tenSiteList as $siteten){
+            $tenResult[] = parse_url($siteten)['host'];
+        }
+        $tenDomenList = $tenResult;*/
+
+
         $allSitesFromUserQueries = [];
         $queriesByUserQueries = [];
         $toLog['AllTwenty'] = $siteList;
+        $toLog['fullSiteList'] = $fullSiteList;
+        $toLog['minusSites'] = $hiddenSites;
+        $toLog['tenDomenList'] = $tenDomenList;
 
         $splitQueries = $this->clearQueries($userQueries);
         $userQueries = $splitQueries[0];
@@ -98,8 +118,10 @@ class ClusterJob implements ShouldQueue
         $bestFourSites = [];
         foreach($mostPopularManyDem as $one){
             if(in_array($one['site'], $siteList)){
-                array_push($bestFourSites, $one['site']);
-                $need--;
+                if($this->multineedle_stripos_usual($one['site'], $hiddenSites) === false){
+                    array_push($bestFourSites, $one['site']);
+                    $need--;
+                }
             }
             if($need == 0){
                 break;
@@ -137,8 +159,16 @@ class ClusterJob implements ShouldQueue
             }
 
             if($res['sum'] == 1 || $res['sum'] == 2){
-                $tenSiteList = array_slice($siteList, 0, 10);
-                $countRes = count(array_intersect($tenSiteList,$queriesByUserQueries[$one]));
+                $userSites = $queriesByUserQueries[$one];
+/*                $tenUserResult = [];
+                foreach($userSites as $siteten){
+                    $tenUserResult[] = parse_url($siteten)['host'];
+                }
+                $tenUserDomenList = $tenUserResult;*/
+                //$tenSiteList = $resFullSite;
+                $countRes = count(array_intersect($tenDomenList,$userSites));
+/*                \Illuminate\Support\Facades\Log::debug($res['query']);
+                \Illuminate\Support\Facades\Log::debug(array_intersect($tenDomenList,$userSites));*/
                 if($countRes >= 3){
                     $res['sum'] = 2;
                 }else{
@@ -256,6 +286,15 @@ class ClusterJob implements ShouldQueue
         }
         $res=array_reverse($res);
         return $res;
+    }
+
+    private function multineedle_stripos_usual($haystack, $needles, $offset=0) {
+        foreach($needles as $needle) {
+            if(stripos($haystack, $needle) !== false){
+                return true;
+            }
+        }
+        return false;
     }
 
     private function multineedle_stripos($haystack, $needles, $offset=0) {

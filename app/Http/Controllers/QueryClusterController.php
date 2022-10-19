@@ -65,7 +65,7 @@ class QueryClusterController extends Controller
             'nameExcelFile'=>'none',
             'countQueries'=>0,
             'countNowQueries'=>0,
-            'fullSiteList'=>$request->get('sites'),
+            'fullSiteList'=>json_encode($request->get('sites'), JSON_UNESCAPED_UNICODE),
         ]);
 
         ClusterJob::dispatch($clusterQuery->id);
