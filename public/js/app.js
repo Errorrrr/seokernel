@@ -5384,6 +5384,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
       axios.post('/api/cluster_add_task', {
+        sites: this.queries,
         list: siteList,
         query: this.queryString,
         region: this.region,

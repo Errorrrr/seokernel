@@ -140,7 +140,7 @@
                     }
                 });
                 axios
-                    .post('/api/cluster_add_task', {list: siteList, query: this.queryString, region: this.region, userQueries: this.userQueries})
+                    .post('/api/cluster_add_task', {sites: this.queries,list: siteList, query: this.queryString, region: this.region, userQueries: this.userQueries})
                     .then((response) => {
 
                         if(response.data == 'ok'){

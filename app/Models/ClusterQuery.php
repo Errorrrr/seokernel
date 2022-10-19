@@ -50,6 +50,7 @@ class ClusterQuery extends Model
 		'countQueries',
 		'countNowQueries',
 		'countMinusQueries',
+        'fullSiteList',
 	];
 
 	public function user()
