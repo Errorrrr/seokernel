@@ -66,7 +66,9 @@ class QueryAddController extends Controller
     }
 
     public function addTask(Request $request){
-       // Excel::download(new UsersExport, 'users.xlsx');
+        ini_set('memory_limit', '64M');
+
+        // Excel::download(new UsersExport, 'users.xlsx');
         $user = Auth::user();
         $price = Price::find(1);
 
