@@ -205,7 +205,6 @@ class QueryAddController extends Controller
         $headerCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         $responseBody = $response; //substr($response, $header_size);
         curl_close($curl);
-        dd($url,$requests);
         $this->temp['code'] = $headerCode; //t
 
         return $responseBody;
