@@ -34,7 +34,7 @@ class TelegramController extends Controller
 
                 $response = $telegram->sendMessage([
                     'chat_id' => $userid,
-                    'text' => 'Ваш пароль: '.$pass.' Продолжите на сайте: https://turbo-yadro.ru/login',
+                    'text' => 'Ваш пароль: '.$pass.' Продолжите на сайте: https://turbo-yadro.ru',
                 ]);
 
             }

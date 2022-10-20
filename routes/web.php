@@ -46,7 +46,7 @@ Route::get('/pc-oferta', function () {
 Route::get('/policy', function () {
     return view('back_conditions');
 });
-
+Route::get('/', 'HomeController@index')->name('home')->middleware(['guest']);
 Route::post('/api/pages_list', 'QueryAddController@getPagesList')->middleware(['auth']);
 Route::post('/api/add_task', 'QueryAddController@addTask')->middleware(['auth']);
 Route::post('/api/cluster_add_task', 'QueryClusterController@addTask')->middleware(['auth']);
