@@ -84,7 +84,7 @@
                                 this.queries = list;
                             });
                     }
-                }, 1000);
+                }, 1500);
 
         },
         methods: {
