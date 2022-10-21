@@ -110,7 +110,7 @@ class Posts:
 
 def getThreadsList():
     result = []
-    for item in range(0,500):
+    for item in range(0,200):
         result.append(item)
     return result
 
@@ -137,7 +137,7 @@ processes = Processes()
 i = 0
 while(isWorking):
     i += 1
-    time.sleep(0.01)
+    time.sleep(0.001)
     if not threads.getFreeThread() is None and not posts.getPostNum() is None:
         postNum = posts.getPostNum()
         processes.startNewProcess(postNum, threads.getFreeThread())
@@ -148,7 +148,7 @@ while(isWorking):
     if not processes.hasWorkingProcesses() and posts.getPostNum() is None:
         print("Нет активных процессов, нет неразобранных запросов!")
         isWorking = False
-    if i == 50:
+    if i == 100:
         i = 0
         first, second, third = argv
         subprocess.Popen(str(second)+' '+os.path.dirname(os.path.realpath(__file__))+'/artisan update:progress ' + str(postNum), executable='/bin/bash', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
