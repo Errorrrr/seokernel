@@ -134,6 +134,11 @@ $('.nav__reg').click(function (e) {
   $('#popup1').arcticmodal({
   });
 });
+$('.zaglushka').click(function (e) {
+    e.preventDefault();
+    $('#popup2').arcticmodal({
+    });
+});
 $('.header__btn').click(function (e) {
   e.preventDefault();
   $('#popup1').arcticmodal({
@@ -157,6 +162,21 @@ $('.nav__btn').click(function (e) {
   e.preventDefault();
   $('#popup3').arcticmodal({
   });
+});
+$('.burger__reg').click(function (e) {
+    e.preventDefault();
+    $('#popup1').arcticmodal({
+    });
+    $('.burger').toggleClass('active');
+    $('.menu .button').toggleClass('active');
+});
+$('.burger__enter').click(function (e) {
+    e.preventDefault();
+    $('#popup3').arcticmodal({
+    });
+    $('.burger').toggleClass('active');
+    $('.menu .button').toggleClass('active');
+
 });
 $('.rev__btn').click(function (e) {
     e.preventDefault();

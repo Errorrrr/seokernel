@@ -5,8 +5,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Турбо Ядро</title>
-    <meta name="description" content="Готовая семантика за 1 минуту">
+    <title>Сбор семантического ядра в онлайн сервисе Турбо-Ядро</title>
+    <meta name="description" content="Онлайн-сервис по сбору семантического ядра и кластеризации за 1 минуту в автоматическом режиме без мучительной чистки">
     <meta name="keywords" content="Готовая семантика за 1 минуту">
     <!-- Favicon -->
     <!-- <link rel="icon" href="img/shortcut.png" type="image/x-icon">
@@ -29,6 +29,15 @@
     <link rel="stylesheet" type="text/css" href="css/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="css/slick.css">
     <link rel="stylesheet" href="css/main.css">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-T5BFF99');</script>
+    <!-- End Google Tag Manager -->
+
 </head>
 <body>
 <div class="body-wrap">
@@ -285,7 +294,7 @@
                     </p>
                     <div class="how__video">
                         <img src="img/pic1.png" alt="" class="how__img">
-                        <a href="#" class="youtube-link how__play" youtubeid="4oV65GVVits">
+                        <a href="#" class="youtube-link how__play" youtubeid="5I2PtHkshqQ">
                             <img src="img/play.svg" alt="" class="play">
                         </a>
                     </div>
@@ -300,14 +309,14 @@
                     </p>
                     <div class="how__video">
                         <img src="img/pic2.png" alt="" class="how__img">
-                        <a href="#" class="youtube-link how__play" youtubeid="4oV65GVVits">
+                        <a href="#" class="youtube-link how__play" youtubeid="mDG7jZgV3r8">
                             <img src="img/play.svg" alt="" class="play">
                         </a>
                     </div>
                 </div>
                 <div class="how__item">
                     <img src="img/num3.svg" alt="" class="how__num">
-                    <div class="how__name">
+                    <div class="how__name" >
                         Подготовка готовой семантики
                     </div>
                     <p class="how__text">
@@ -315,7 +324,7 @@
                     </p>
                     <div class="how__video">
                         <img src="img/pic3.png" alt="" class="how__img">
-                        <a href="#" class="youtube-link how__play" youtubeid="4oV65GVVits">
+                        <a href="#" class="youtube-link how__play zaglushka" youtubeid="">
                             <img src="img/play.svg" alt="" class="play">
                         </a>
                     </div>
@@ -372,6 +381,7 @@
             </div>
         </div>
     </section>
+<!--
     <section class="rev" id="rev">
         <div class="container">
             <h2>
@@ -480,6 +490,7 @@
             </a>
         </div>
     </section>
+-->
     <section class="faq" id="faq">
         <div class="container">
             <h2>
@@ -498,7 +509,7 @@
                     <div class="accordeon__button closed">Почему не нужно чистить запросы?</div>
                     <ul class="accordeon__panel">
                         <li class="panel__text">
-                            Yes. Age restrictions will vary between 13+, 16+, 18+, and 21+, depending on the nature of the particular campaign. Winners younger than the age of majority in his/her place of residence must be accompanied by a parent or adult guardian. See the official rules for each sweepstakes for details and restrictions.
+                            Метод в класстеризаторе качественно выбирает запросы.  А дополнительный алгоритм автоматически вычищает неподходящие слова.
                         </li>
                     </ul>
                 </li>
@@ -506,7 +517,7 @@
                     <div class="accordeon__button closed">Возможна ли оплата для юридических лиц?</div>
                     <ul class="accordeon__panel">
                         <li class="panel__text">
-                            Major credit and debit cards are accepted. Please note that due to high network charges, text entries may be subject to an additional fee so that your charity doesn't suffer. Any additional charges will be clearly described on the payment page.
+                            Да, в этом месяце реализуем.
                         </li>
                     </ul>
                 </li>
@@ -514,7 +525,7 @@
                     <div class="accordeon__button closed">Почему класстеризатор не распределяет сразу по нескольким страницам?</div>
                     <ul class="accordeon__panel">
                         <li class="panel__text">
-                            No. Billion Chances operates a “no purchase/donation necessary” policy. Users can enter campaigns without donating by filling out a free entry form available through each sweepstakes' campaign page. Donating will not increase your chances of winning. Each properly submitted free entry form typically provides 100 entries, which is the same amount of entries a user would receive for a $10 donation, and users can submit more than one free entry form. Full details can be found in the campaign-specific terms and conditions.
+                            Способ класстеризации специфичный, сфокусированный на качественном выборе запросов для 1 страницы. Поэтому подавать на вход нужно только список запросов для этой страницы с помощью раздела «Запросы конкурентов» или использовать свой список.
                         </li>
                     </ul>
                 </li>
@@ -670,34 +681,9 @@
                     <img src="img/close.svg" alt="" class="close__pic svg">
                 </div>
                 <div class="popup__top">
-                    <p class="popup__name">
-                        Регистрация
+                    <p class="popup__name" style="font-size: 2rem;">
+                        В разработке!
                     </p>
-                </div>
-                <div class="popup__wrap">
-                    <form action="#" class="popup__form">
-                        <div class="popup__item">
-                            <label class="popup__label">
-                                Ваш ник в Телеграмме
-                            </label>
-                            <input type="text" name="name" class="popup__input" placeholder="nickname">
-                            <p class="popup__sub">
-                                *введите никнейм без @
-                            </p>
-                        </div>
-                        <div class="popup__item">
-                            <label class="popup__label">
-                                Пароль
-                            </label>
-                            <input type="password" name="pass" class="popup__input">
-                        </div>
-                        <button class="popup__btn bttn">
-                            Выслать пароль
-                        </button>
-                        <a href="#" class="popup__link bttlogin">
-                            Я уже зарегестрирован
-                        </a>
-                    </form>
                 </div>
             </div>
         </div>
