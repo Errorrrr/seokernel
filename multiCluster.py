@@ -110,7 +110,7 @@ class Posts:
 
 def getThreadsList():
     result = []
-    for item in range(0,500):
+    for item in range(0,100):
         result.append(item)
     return result
 
