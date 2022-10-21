@@ -138,7 +138,7 @@ processes = Processes()
 i = 0
 while(isWorking):
     i += 1
-    time.sleep(0.05)
+    time.sleep(0.025)
     if not threads.getFreeThread() is None and not posts.getPostNum() is None:
         postNum = posts.getPostNum()
         processes.startNewProcess(postNum, threads.getFreeThread())
