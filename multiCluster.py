@@ -110,7 +110,7 @@ class Posts:
 
 def getThreadsList():
     result = []
-    for item in range(0,200):
+    for item in range(0,150):
         result.append(item)
     return result
 
@@ -137,7 +137,7 @@ processes = Processes()
 i = 0
 while(isWorking):
     i += 1
-    time.sleep(0.001)
+    time.sleep(0.01)
     if not threads.getFreeThread() is None and not posts.getPostNum() is None:
         postNum = posts.getPostNum()
         processes.startNewProcess(postNum, threads.getFreeThread())
