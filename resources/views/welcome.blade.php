@@ -543,7 +543,7 @@
                         <img src="img/b11.svg" alt="" class="info__icon">
                         <div class="info__content">
                             <p class="info__name">
-                                Приведи друга
+                                Приведите друга
                             </p>
                             <p class="info__text">
                                 Отправьте ему ссылку или промокод
@@ -663,12 +663,14 @@
                         <p class="popup__sub">
                             *введите никнейм без @
                         </p>
-                        <button class="popup__btn bttn">
+                        <button class="popup__btn bttn clsForMetricaRegisterBtn">
                             Выслать пароль
                         </button>
                         <a href="#" class="popup__link bttlogin">
                             Я уже зарегестрирован
                         </a>
+                        <br>
+                        <span style="font-size: 0.8rem;">*Нажимая "Зарегистрироваться", вы соглашаетесь с <a href="/processing_rule" target="_blank">правилами обработки персональных данных</a></span>
                     </form>
                 </div>
             </div>

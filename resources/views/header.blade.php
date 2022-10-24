@@ -97,16 +97,16 @@
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
-                <li class="nav-item @if(Request::is('/queries')) active @endif" style="align-self: center;">
+                <li class="nav-item @if(strpos(Request::url(),'queries') !== false) active @endif" style="align-self: center;">
                     <a class="nav-link" href="/queries">
                         <i class="mdi mdi-diamond"></i>
                         <span class="menu-title" style="padding:10px;">Запросы конкурентов</span>
                     </a>
                 </li>
-                <li class="nav-item @if(Request::is('/clusters')) active @endif" style="align-self: center;">
+                <li class="nav-item @if(strpos(Request::url(),'clusters') !== false) active @endif" style="align-self: center;">
                     <a class="nav-link" href="/clusters">
                         <i class="mdi mdi-animation"></i>
-                        <span class="menu-title" style="padding:10px;">Кластеризатор    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span class="menu-title" style="padding:10px;">Кластеризатор по ТОПу</span>
                     </a>
                 </li>
                 <li class="nav-item @if(Request::is('/')) active @endif" style="align-self: center;">

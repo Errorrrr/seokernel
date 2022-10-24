@@ -29,6 +29,9 @@ class SettingsController extends Controller
                 'cluster_price' => $price->cluster_price,
                 'conc_price' => $price->conc_price,
                 'start_balance' => $price->start_balance,
+                'api_keyso' => $price->api_keyso,
+                'api_proxy' => $price->api_proxy,
+                'api_stack' => $price->api_stack,
             ];
         }else{
             return 'err';
@@ -74,6 +77,9 @@ class SettingsController extends Controller
         $price->cluster_price = $request->get('cluster_price');
         $price->conc_price = $request->get('conc_price');
         $price->start_balance = $request->get('start_balance');
+        $price->api_keyso = $request->get('api_keyso');
+        $price->api_proxy = $request->get('api_proxy');
+        $price->api_stack = $request->get('api_stack');
         $price->save();
         return 'ok';
     }

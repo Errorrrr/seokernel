@@ -28,10 +28,10 @@ class Process:
     fileNum = None
 
     def startProcess(self,fileNum,thread):
-        first, second, third = argv
+        first, second, third, four, five = argv
 
         self.fileNum = fileNum
-        self.process = subprocess.Popen(str(second)+' '+os.path.dirname(os.path.realpath(__file__))+'/artisan xml:thread ' + str(fileNum), executable='/bin/bash', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        self.process = subprocess.Popen(str(second)+' '+os.path.dirname(os.path.realpath(__file__))+'/artisan xml:thread ' + str(fileNum) + ' ' + str(four) + ' ' + str(five), executable='/bin/bash', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         print('Запущен процесс для номера потока:'+str(thread.num)+' и номера группы запросов №'+str(fileNum))
         self.thread = thread
         self.thread.setEnable()
@@ -124,7 +124,7 @@ isWorking = True
 
 threadList = getThreadsList()
 
-first, second, third = argv
+first, second, third, four, five = argv
 
 print(third)
 posts = Posts()
@@ -151,7 +151,7 @@ while(isWorking):
         isWorking = False
     if i == 10:
         i = 0
-        first, second, third = argv
+        first, second, third, four, five = argv
         subprocess.Popen(str(second)+' '+os.path.dirname(os.path.realpath(__file__))+'/artisan update:progress ' + str(postNum), executable='/bin/bash', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         processes.printAll()
 

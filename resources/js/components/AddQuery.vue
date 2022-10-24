@@ -40,7 +40,7 @@
                                 <tbody>
                                 <tr v-for="(query,index) in queries">
                                     <td>{{index+1}}</td>
-                                    <td v-bind:style= "query.hide == 1 ? 'color:lightgray' : ''">{{ query.name }}</td>
+                                    <td v-bind:style= "query.hide == 1 ? 'color:lightgray' : ''"><a :href="query.name" target="_blank">{{ query.name }}</a></td>
                                     <td>
                                         <label v-if="query.hide == 0" class="badge badge-secondary" v-on:click="hideRow(index)">Убрать</label>
                                         <label v-if="query.hide == 1" class="badge badge-danger" v-on:click="hideRow(index)">Вернуть</label>

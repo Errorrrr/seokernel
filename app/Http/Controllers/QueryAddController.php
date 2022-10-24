@@ -42,12 +42,12 @@ class QueryAddController extends Controller
         }
 
 
-        $checkPrice = file_get_contents('https://xmlproxy.ru/balance.php?user=omi4sem%40mail.ru&key='.env('XMLPROXY_API_KEY'));
+        $checkPrice = file_get_contents('https://xmlproxy.ru/balance.php?user=omi4sem%40mail.ru&key='.$settings->api_proxy);
         $jsonInfo = json_decode($checkPrice, true);
         if($jsonInfo['cur_cost'] > 7){
-            $xs_key = 'https://xmlstock.com/yandex/xml/?user=9455&key='.env('XMLSTACK_API_KEY');
+            $xs_key = 'https://xmlstock.com/yandex/xml/?user=9455&key='.$settings->api_stack;
         }else{
-            $xs_key = 'http://xmlproxy.ru/search/xml?groupby=attr%3Dd.mode%3Ddeep.groups-on-page%3D10.docs-in-group%3D3&user=omi4sem%40mail.ru&key='.env('XMLPROXY_API_KEY');
+            $xs_key = 'http://xmlproxy.ru/search/xml?groupby=attr%3Dd.mode%3Ddeep.groups-on-page%3D10.docs-in-group%3D3&user=omi4sem%40mail.ru&key='.$settings->api_proxy;
         }
 
      //   $region = $this->getYaRegionCode( $region );
@@ -162,8 +162,9 @@ class QueryAddController extends Controller
 
     public function getKeysoBase( $path, $requests, $usePost=true )
     {
+        $price = Price::find(1);
         $base = 'https://api.keys.so/';
-        $token = '62fe145ec43a41.44769549622a118f33cc51b840c0e6be5d338ac6';
+        $token = $price->api_keyso;
 
         $reqs = http_build_query($requests, '', '&');
 
@@ -225,5 +226,17 @@ class QueryAddController extends Controller
         return $rid['uid'];
     }
 
+/*    public function deleteKeysoDoubles( $phrases )
+    {
+        $opts = [
+            'list'=>$phrases
+        ];
+
+        $rid = json_decode( $this->getKeysoBase('tools/delete_double', $opts), 1 ); //json_decode( $this->getKeysoBase('report/group', $opts) );
+        dd($rid);
+        $this->temp['rid_']=var_export( $rid['uid'], 1);//t
+
+        return $rid['uid'];
+    }*/
 
 }

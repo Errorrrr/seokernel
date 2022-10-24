@@ -23,6 +23,7 @@ return array(
     'App\\Http\\Controllers\\Auth\\RegisteredUserController' => $baseDir . '/app/Http/Controllers/Auth/RegisteredUserController.php',
     'App\\Http\\Controllers\\Auth\\VerifyEmailController' => $baseDir . '/app/Http/Controllers/Auth/VerifyEmailController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\QueryAddController' => $baseDir . '/app/Http/Controllers/QueryAddController.php',
     'App\\Http\\Controllers\\QueryClusterController' => $baseDir . '/app/Http/Controllers/QueryClusterController.php',
     'App\\Http\\Controllers\\QueryConsController' => $baseDir . '/app/Http/Controllers/QueryConsController.php',

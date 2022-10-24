@@ -21,7 +21,6 @@
                     <div class="card">
                         <div class="card-body">
                             <p class="card-title">Персональная информация</p>
-                            <p>Почта: {{$user->email}}</p>
                             <p>Telegram Логин: {{'@'.$user->name}}</p>
                             <p>Дата регистрации: {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at)->format('Y-m-d');}}</p>
 

@@ -34,5 +34,8 @@ class Price extends Model
 		'stopClusterFull',
 		'stopKeyso',
 		'start_balance',
+		'api_keyso',
+		'api_proxy',
+		'api_stack',
 	];
 }

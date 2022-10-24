@@ -5551,7 +5551,10 @@ __webpack_require__.r(__webpack_exports__);
     return {
       price_cluster: 0,
       price_conc: 0,
-      start_balance: 0
+      start_balance: 0,
+      api_stack: 0,
+      api_proxy: 0,
+      api_keyso: 0
     };
   },
   mounted: function mounted() {
@@ -5561,6 +5564,9 @@ __webpack_require__.r(__webpack_exports__);
       _this.price_cluster = response.data.cluster_price;
       _this.price_conc = response.data.conc_price;
       _this.start_balance = response.data.start_balance;
+      _this.api_stack = response.data.api_stack;
+      _this.api_proxy = response.data.api_proxy;
+      _this.api_keyso = response.data.api_keyso;
     });
   },
   methods: {
@@ -5568,7 +5574,10 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/api/change_price', {
         cluster_price: this.price_cluster,
         conc_price: this.price_conc,
-        start_balance: this.start_balance
+        start_balance: this.start_balance,
+        api_stack: this.api_stack,
+        api_proxy: this.api_proxy,
+        api_keyso: this.api_keyso
       }).then(function (response) {});
     }
   }
@@ -5665,7 +5674,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.queries = list;
         });
       }
-    }, 1000);
+    }, 1500);
   },
   methods: {
     downloadExcel: function downloadExcel(query) {
@@ -5827,7 +5836,12 @@ var render = function render() {
   }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.queries, function (query, index) {
     return _c("tr", [_c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", {
       style: query.hide == 1 ? "color:lightgray" : ""
-    }, [_vm._v(_vm._s(query.name))]), _vm._v(" "), _c("td", [query.hide == 0 ? _c("label", {
+    }, [_c("a", {
+      attrs: {
+        href: query.name,
+        target: "_blank"
+      }
+    }, [_vm._v(_vm._s(query.name))])]), _vm._v(" "), _c("td", [query.hide == 0 ? _c("label", {
       staticClass: "badge badge-secondary",
       on: {
         click: function click($event) {
@@ -6037,7 +6051,12 @@ var render = function render() {
   }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.queries, function (query, index) {
     return _c("tr", [_c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", {
       style: query.hide == 1 ? "color:lightgray" : ""
-    }, [_vm._v(_vm._s(query.name))]), _vm._v(" "), _c("td", [query.hide == 0 ? _c("label", {
+    }, [_c("a", {
+      attrs: {
+        href: query.name,
+        target: "_blank"
+      }
+    }, [_vm._v(_vm._s(query.name))])]), _vm._v(" "), _c("td", [query.hide == 0 ? _c("label", {
       staticClass: "badge badge-secondary",
       on: {
         click: function click($event) {
@@ -6169,7 +6188,7 @@ var render = function render() {
     staticClass: "card-body"
   }, [_c("h4", {
     staticClass: "card-title"
-  }, [_vm._v("Настройка цен")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Настройка констант")]), _vm._v(" "), _c("div", {
     staticClass: "forms-sample"
   }, [_c("div", {
     staticClass: "form-group"
@@ -6228,7 +6247,7 @@ var render = function render() {
     staticClass: "form-group"
   }, [_c("label", {
     attrs: {
-      "for": "exampleInputEmail3"
+      "for": "exampleInputEmail4"
     }
   }, [_vm._v("Стартовый баланс юзера")]), _vm._v(" "), _c("input", {
     directives: [{
@@ -6248,6 +6267,84 @@ var render = function render() {
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.start_balance = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "exampleInputEmail5"
+    }
+  }, [_vm._v("Ключ API keyso")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.api_keyso,
+      expression: "api_keyso"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      id: "exampleInputEmail5"
+    },
+    domProps: {
+      value: _vm.api_keyso
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.api_keyso = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "exampleInputEmail6"
+    }
+  }, [_vm._v("Ключ API xmlstock")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.api_stack,
+      expression: "api_stack"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      id: "exampleInputEmail6"
+    },
+    domProps: {
+      value: _vm.api_stack
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.api_stack = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "exampleInputEmail7"
+    }
+  }, [_vm._v("Ключ API xmlproxy")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.api_proxy,
+      expression: "api_proxy"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      id: "exampleInputEmail7"
+    },
+    domProps: {
+      value: _vm.api_proxy
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.api_proxy = $event.target.value;
       }
     }
   })]), _vm._v(" "), _c("button", {
