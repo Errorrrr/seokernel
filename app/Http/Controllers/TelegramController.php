@@ -15,10 +15,10 @@ class TelegramController extends Controller
         $requ= json_decode(file_get_contents('php://input'),true);
         $userid = $requ['message']['from']['id'];
         $text   = $requ['message']['text'];
-
+        \Illuminate\Support\Facades\Log::debug($requ);
 
         if ($text == '/start') {
-            $user = User::where('name','=',$requ['message']['from']['username'])->first();
+ /*           $user = User::where('name','=',$requ['message']['from']['username'])->first();
             if($user == null){
                 $response = $telegram->sendMessage([
                     'chat_id' => $userid,
@@ -37,8 +37,21 @@ class TelegramController extends Controller
                     'text' => 'Ваш пароль: '.$pass.' Продолжите на сайте: https://turbo-yadro.ru',
                 ]);
 
-            }
+            }*/
+            $keyboard = [
+                'inline_keyboard' => [
+                    [
+                        ['text' => 'Зарегистрироваться', 'request_contact' => true]
+                    ]
+                ]
+            ];
+            $encodedKeyboard = json_encode($keyboard);
 
+            $response = $telegram->sendMessage([
+                'chat_id' => $userid,
+                'text' => 'Чтобы зарегистрироваться нажмите на кнопку ниже',
+                'reply_markup' => $encodedKeyboard,
+            ]);
         }
     }
 }

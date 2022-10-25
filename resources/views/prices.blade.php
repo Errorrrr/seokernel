@@ -37,6 +37,10 @@
                                     <td>Кластеризатор по топу</td>
                                     <td>{{$price->cluster_price}} за одну строку</td>
                                 </tr>
+                                <tr>
+                                    <td>Смысловые дубли</td>
+                                    <td>{{$price->doubles_price}} за одну строку</td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>

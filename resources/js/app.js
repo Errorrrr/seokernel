@@ -23,6 +23,8 @@ window.Vue = require('vue').default;
 Vue.component('add-query', require('./components/AddQuery.vue').default);
 Vue.component('query-concs', require('./components/QueryConcs.vue').default);
 Vue.component('query-cluster', require('./components/QueryCluster.vue').default);
+Vue.component('doubles', require('./components/Doubles.vue').default);
+Vue.component('add-doubles', require('./components/AddDoubles.vue').default);
 Vue.component('add-cluster', require('./components/AddCluster.vue').default);
 Vue.component('change-price', require('./components/ChangePrice.vue').default);
 Vue.component('change-password', require('./components/ChangePassword.vue').default);

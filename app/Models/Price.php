@@ -30,6 +30,7 @@ class Price extends Model
 	protected $fillable = [
 		'cluster_price',
 		'conc_price',
+		'doubles_price',
 		'stopClusterPart',
 		'stopClusterFull',
 		'stopKeyso',

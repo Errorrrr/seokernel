@@ -85,6 +85,7 @@ class QueryAddController extends Controller
 
         $resArray = [];
        // dd($keywords['data'][0]);
+        $forCheck = [];
         foreach($keywords['data'] as $key=>$one){
             unset($keywords['data'][$key]['weight']);
             unset($keywords['data'][$key]['docs']);
@@ -93,6 +94,7 @@ class QueryAddController extends Controller
             unset($keywords['data'][$key]['isgeo']);
             unset($keywords['data'][$key]['isquest']);
             unset($keywords['data'][$key]['serpf']);
+            $forCheck[] = $one['word'];
 /*            Query::updateOrCreate([
                 'query'=>$one['word'],
                 'ws'=>$one['ws'],
@@ -100,6 +102,12 @@ class QueryAddController extends Controller
                 'numwords'=>$one['numwords'],
                 'main_queries_id'=>$mainQuery->id,
             ]);*/
+        }
+        $withoutDoubles = $this->deleteKeysoDoubles($forCheck);
+        foreach($keywords['data'] as $key=>$one){
+            if(!in_array($keywords['data'][$key]['word'], $withoutDoubles)){
+                unset($keywords['data'][$key]);
+            }
         }
         $filePath = 'xlFiles/file'.time().'-'.rand(0,10000).'.xlsx';
         Excel::store(new QueriesExport($keywords['data']), $filePath); //Чтобы файлы не затёрлись добавляем соль в название
@@ -226,17 +234,14 @@ class QueryAddController extends Controller
         return $rid['uid'];
     }
 
-/*    public function deleteKeysoDoubles( $phrases )
+    public function deleteKeysoDoubles( $phrases )
     {
         $opts = [
             'list'=>$phrases
         ];
 
         $rid = json_decode( $this->getKeysoBase('tools/delete_double', $opts), 1 ); //json_decode( $this->getKeysoBase('report/group', $opts) );
-        dd($rid);
-        $this->temp['rid_']=var_export( $rid['uid'], 1);//t
-
-        return $rid['uid'];
-    }*/
+        return $rid['keys'];
+    }
 
 }
