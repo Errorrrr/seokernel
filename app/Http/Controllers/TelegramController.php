@@ -14,45 +14,61 @@ class TelegramController extends Controller
         $telegram = new Api(env('TELEGRAM_API'));
         $requ= json_decode(file_get_contents('php://input'),true);
         \Illuminate\Support\Facades\Log::debug($requ);
-
         $userid = $requ['message']['from']['id'];
-        $text   = $requ['message']['text'];
+        if(isset($requ['message']['contact']) && isset($requ['message']['contact']['phone_number'])){
+            $user = User::where('name','=',$requ['message']['from']['username'])->first();
+            $userWithSameNubmer = User::where('phone','=',$requ['message']['contact']['phone_number'])->first();
+            if($userWithSameNubmer == null){
+                if($user == null){
+                    $response = $telegram->sendMessage([
+                        'chat_id' => $userid,
+                        'text' => 'Вы незарегистрированы',
+                    ]);
+                }else{
+                    $pass = Str::random(rand(8,12));
+                    $user->forceFill([
+                        'password' => Hash::make($pass)
+                    ])->setRememberToken(Str::random(60));
+                    $user->chat_id = $userid;
+                    $user->save();
 
-        if ($text == '/start') {
- /*           $user = User::where('name','=',$requ['message']['from']['username'])->first();
-            if($user == null){
+                    $response = $telegram->sendMessage([
+                        'chat_id' => $userid,
+                        'text' => 'Ваш пароль: '.$pass.' Продолжите на сайте: https://turbo-yadro.ru',
+                    ]);
+                }
+
+           }else{
                 $response = $telegram->sendMessage([
                     'chat_id' => $userid,
-                    'text' => 'Вы незарегистрированы',
+                    'text' => 'Пользователь с таким номером телефона уже существует',
                 ]);
-            }else{
-                $pass = Str::random(rand(8,12));
-                $user->forceFill([
-                    'password' => Hash::make($pass)
-                ])->setRememberToken(Str::random(60));
-                $user->chat_id = $userid;
-                $user->save();
+           }
+
+
+        }else{
+            $text   = $requ['message']['text'];
+
+            if ($text == '/start') {
+                $keyboard = [
+                    'keyboard' => [
+                        [
+                            ['text' => 'Зарегистрироваться', 'request_contact' => true,]
+                        ]
+                    ],
+                    'resize_keyboard' => true,
+                ];
+                $encodedKeyboard = json_encode($keyboard);
 
                 $response = $telegram->sendMessage([
                     'chat_id' => $userid,
-                    'text' => 'Ваш пароль: '.$pass.' Продолжите на сайте: https://turbo-yadro.ru',
+                    'text' => 'Чтобы зарегистрироваться нажмите на кнопку ниже',
+                    'reply_markup' => $encodedKeyboard,
                 ]);
-
-            }*/
-            $keyboard = [
-                'keyboard' => [
-                    [
-                        ['text' => 'Зарегистрироваться', 'request_contact' => true]
-                    ]
-                ]
-            ];
-            $encodedKeyboard = json_encode($keyboard);
-
-            $response = $telegram->sendMessage([
-                'chat_id' => $userid,
-                'text' => 'Чтобы зарегистрироваться нажмите на кнопку ниже',
-                'reply_markup' => $encodedKeyboard,
-            ]);
+            }
         }
+
+
+
     }
 }

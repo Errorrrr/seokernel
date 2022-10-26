@@ -23,7 +23,8 @@ class User extends Authenticatable
         'password',
         'balance',
         'is_admin',
-        'chat_id'
+        'chat_id',
+        'phone',
     ];
 
     /**
