@@ -43,14 +43,14 @@ class DoublesController extends Controller
     public function addDoubles(Request $request){
         $user = Auth::user();
         $price = Price::find(1);
+        $queries = explode(PHP_EOL, $request->get('userQueries'));
 
-        if($user->balance - $price->doubles_price >= 0){
-            $user->balance = $user->balance - $price->doubles_price;
+        if($user->balance - $price->doubles_price*count($queries) >= 0){
+            $user->balance = $user->balance - $price->doubles_price*count($queries);
             $user->save();
         }else{
             return 'err';
         }
-        $queries = explode(PHP_EOL, $request->get('userQueries'));
         $withoutDoubles = $this->deleteKeysoDoubles($queries);
         $res = [];
         foreach ($withoutDoubles as $one){
