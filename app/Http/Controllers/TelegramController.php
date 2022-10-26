@@ -39,7 +39,7 @@ class TelegramController extends Controller
 
             }*/
             $keyboard = [
-                'inline_keyboard' => [
+                'keyboard' => [
                     [
                         ['text' => 'Зарегистрироваться', 'request_contact' => true]
                     ]
