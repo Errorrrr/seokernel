@@ -81,20 +81,20 @@ class xmlThreadCommand extends Command
 
     public function xmlStackQuery($query, $region, $count){
 
-        $checkPrice = $this->curlReq('https://xmlproxy.ru/balance.php?user=omi4sem%40mail.ru&key='.$this->argument('proxyKey'), '');
+        $checkPrice = $this->curlReq('https://xmlproxy.ru/balance.php?'.$this->argument('proxyKey'), '');
         $jsonInfo = $checkPrice[0];
         $httpcode = $checkPrice[1];
         while($httpcode != 200){
             sleep(3);
-            $checkPrice = $this->curlReq('https://xmlproxy.ru/balance.php?user=omi4sem%40mail.ru&key='.$this->argument('proxyKey'), '');
+            $checkPrice = $this->curlReq('https://xmlproxy.ru/balance.php?'.$this->argument('proxyKey'), '');
             $jsonInfo = $checkPrice[0];
             $httpcode = $checkPrice[1];
         }
         $jsonInfo = json_decode($jsonInfo, true);
         if($jsonInfo['cur_cost'] > 7){
-            $xs_key = 'https://xmlstock.com/yandex/xml/?user=9455&key='.$this->argument('stockKey');
+            $xs_key = 'https://xmlstock.com/yandex/xml/?'.$this->argument('stockKey');
         }else{
-            $xs_key = 'http://xmlproxy.ru/search/xml?groupby=attr%3Dd.mode%3Ddeep.groups-on-page%3D10.docs-in-group%3D3&user=omi4sem%40mail.ru&key='.$this->argument('proxyKey');
+            $xs_key = 'http://xmlproxy.ru/search/xml?groupby=attr%3Dd.mode%3Ddeep.groups-on-page%3D10.docs-in-group%3D3&'.$this->argument('proxyKey');
         }
 
         $query = ( '&query='.urlencode($query) ) . ( $region ? '&lr=' . urlencode($region) : '' );

@@ -42,12 +42,12 @@ class QueryAddController extends Controller
         }
 
 
-        $checkPrice = file_get_contents('https://xmlproxy.ru/balance.php?user=omi4sem%40mail.ru&key='.$settings->api_proxy);
+        $checkPrice = file_get_contents('https://xmlproxy.ru/balance.php?'.$settings->api_proxy);
         $jsonInfo = json_decode($checkPrice, true);
         if($jsonInfo['cur_cost'] > 7){
-            $xs_key = 'https://xmlstock.com/yandex/xml/?user=9455&key='.$settings->api_stack;
+            $xs_key = 'https://xmlstock.com/yandex/xml/?'.$settings->api_stack;
         }else{
-            $xs_key = 'http://xmlproxy.ru/search/xml?groupby=attr%3Dd.mode%3Ddeep.groups-on-page%3D10.docs-in-group%3D3&user=omi4sem%40mail.ru&key='.$settings->api_proxy;
+            $xs_key = 'http://xmlproxy.ru/search/xml?groupby=attr%3Dd.mode%3Ddeep.groups-on-page%3D10.docs-in-group%3D3&'.$settings->api_proxy;
         }
 
      //   $region = $this->getYaRegionCode( $region );
