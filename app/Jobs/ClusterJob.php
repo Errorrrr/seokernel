@@ -92,7 +92,7 @@ class ClusterJob implements ShouldQueue
         ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         Storage::disk('local')->delete('result.json');
         $price = Price::find(1);
-        shell_exec('python3 '.base_path().'/multiCluster.py '.env('PHP_FOR_ARTISAN').' '.(count($userQueries)-1).' '.$price->api_stack.' '.$price->api_proxy);
+        shell_exec('python3 '.base_path().'/multiCluster.py '.env('PHP_FOR_ARTISAN').' '.(count($userQueries)-1).' \''.$price->api_stack.'\' \''.$price->api_proxy.'\'');
 
         while (!Storage::disk('local')->exists('result.json')) {
             sleep(1);
