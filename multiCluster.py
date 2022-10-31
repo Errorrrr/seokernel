@@ -31,7 +31,7 @@ class Process:
         first, second, third, four, five = argv
 
         self.fileNum = fileNum
-        self.process = subprocess.Popen(str(second)+' '+os.path.dirname(os.path.realpath(__file__))+'/artisan xml:thread ' + str(fileNum) + ' ' + str(four) + ' ' + str(five), executable='/bin/bash', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        self.process = subprocess.Popen(str(second)+' '+os.path.dirname(os.path.realpath(__file__))+'/artisan xml:thread ' + str(fileNum) + ' "' + str(four) + '" "' + str(five) + '"', executable='/bin/bash', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         print('Запущен процесс для номера потока:'+str(thread.num)+' и номера группы запросов №'+str(fileNum))
         self.thread = thread
         self.thread.setEnable()

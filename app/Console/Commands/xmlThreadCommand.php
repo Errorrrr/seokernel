@@ -98,7 +98,7 @@ class xmlThreadCommand extends Command
         }
 
         $query = ( '&query='.urlencode($query) ) . ( $region ? '&lr=' . urlencode($region) : '' );
-/*        \Illuminate\Support\Facades\Log::debug('Начало запроса к серверу'.$this->argument('fileNum'));*/
+/*        \Illuminate\Support\Facades\Log::debug('Начало запроса к серверу  '.'http://xmlproxy.ru/search/xml?groupby=attr%3Dd.mode%3Ddeep.groups-on-page%3D10.docs-in-group%3D3&'.$this->argument('proxyKey'));*/
 
         $resp = $this->curlReq($xs_key, $query);
         $xml = $resp[0];
@@ -109,6 +109,7 @@ class xmlThreadCommand extends Command
             $xml = $resp[0];
             $httpcode = $resp[1];
         }
+/*        \Illuminate\Support\Facades\Log::debug($xml);*/
 
 /*        \Illuminate\Support\Facades\Log::debug('Конец запроса к серверу'.$this->argument('fileNum'));*/
 

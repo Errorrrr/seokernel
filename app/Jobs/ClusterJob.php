@@ -140,6 +140,9 @@ class ClusterJob implements ShouldQueue
             $res['hasFourthBest'] = '-';
             $res['sum'] = 0;
 
+            if(!isset($queriesByUserQueries[$one])){
+                continue;
+            }
             foreach($queriesByUserQueries[$one] as $site){
                 if($site == $bestFourSites[0] && $res['hasFirstBest'] == '-'){
                     $res['hasFirstBest'] = $site;
