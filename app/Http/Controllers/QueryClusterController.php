@@ -18,7 +18,7 @@ class QueryClusterController extends Controller
     public function getQueryCluster(){
         $user = Auth::user();
         $result = [];
-        foreach(ClusterQuery::where('user_id','=',$user->id)->paginate(40) as $one){
+        foreach(ClusterQuery::where('user_id','=',$user->id)->get() as $one){
             $one['date'] = Carbon::createFromFormat('Y-m-d H:i:s', $one['created_at'])->format('Y-m-d');
             array_unshift($result, $one);
         }
